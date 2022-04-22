@@ -1,10 +1,30 @@
-.App-header {
-  background-color: var(--main-background-color);
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: var(--main-text-color);
+.app-header {
+	background-color: var(--main-background-color);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: var(--main-text-color);
+}
+
+.app-header h1 {
+	color: var(--success-text-color);
+	margin-bottom: 8px;
+}
+
+.app-header p {
+	color: var(--main-text-color);
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.8rem;
+}
+
+.app-header.header-expanded {
+  	min-height: 100vh;
+}
+
+.app-header:not(.header-expanded) h1 {
+	margin: 5px 0 8px;
+  	font-size: 1rem;
 }
