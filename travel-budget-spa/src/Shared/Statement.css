@@ -1,0 +1,25 @@
+.statement-container {
+    background-color: var(--secondary-background-color);
+    border-radius: 10px;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.statement-container .information p {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: var(--secondary-text-color)
+}
+
+.statement-container .information h2 {
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+.statement-container .amount {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
