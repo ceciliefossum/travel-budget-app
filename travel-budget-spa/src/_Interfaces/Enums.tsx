@@ -14,5 +14,16 @@ export enum StatementCategory {
 
 export enum BalanceType {
     TodaysBalance = 'TODAYS BALANCE',
-    AccountBalance = 'ACCOUNT BALANCE'
+    AccountBalance = 'ACCOUNT BALANCE',
+}
+
+export enum ButtonStyle {
+    Border,
+    Solid,
+}
+
+export enum ButtonColor {
+    MainColor,
+    SuccessColor,
+    DangerColor,
 }

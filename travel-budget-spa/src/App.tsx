@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import './App.css';
+import Navbar from './Shared/Navbar';
 import { AppProps } from './_Interfaces/Props';
 
 const App = (props: AppProps) => (
@@ -10,7 +11,10 @@ const App = (props: AppProps) => (
 				<p>Sign in to start!</p>
 			)}
 		</header>
-		<Outlet />
+		<div className="main-content-container">
+			<Outlet />
+		</div>
+		<Navbar />
     </div>
 );
 

@@ -1,0 +1,55 @@
+.icon-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 8px;
+}
+
+.icon-button-container svg {
+    height: 1.5rem;
+    width: 1.5rem;
+    object-fit: contain;
+    fill: var(--main-text-color);
+}
+
+/* Border main color */
+.icon-button-container.button-border.button-main-color {
+    border: 1px solid var(--main-text-color);
+}
+
+/* Border success color */
+.icon-button-container.button-border.button-success-color {
+    border: 1px solid var(--success-text-color);
+}
+
+.icon-button-container.button-border.button-success-color svg {
+    fill: var(--success-text-color);
+}
+
+/* Border danger color */
+.icon-button-container.button-border.button-danger-color {
+    border: 1px solid var(--danger-text-color);
+}
+.icon-button-container.button-border.button-danger-color svg {
+    fill: var(--danger-text-color);
+}
+
+/* Solid main color */
+.icon-button-container.button-solid.button-main-color {
+    background-color: var(--main-text-color);
+}
+
+.icon-button-container.button-solid.button-main-color svg {
+    background-color: var(--main-background-color);
+}
+
+/* Solid success color */
+.icon-button-container.button-solid.button-success-color {
+    background-color: var(--success-text-color);
+}
+
+/* Solid danger color */
+.icon-button-container.button-solid.button-danger-color {
+    background-color: var(--danger-danger-color);
+}

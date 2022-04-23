@@ -1,0 +1,7 @@
+.navbar-container {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: var(--main-background-color);
+    padding: 10px 30px 20px;
+}

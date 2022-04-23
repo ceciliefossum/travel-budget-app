@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Dashboard from './Dashboard/Dashboard';
 import reportWebVitals from './reportWebVitals';
+import { appRoutes } from './_Constants/Routes';
+import { IRoute } from './_Interfaces/Interfaces';
 
 const isAuthenticated = true;
 
@@ -15,10 +16,10 @@ root.render(
 	<React.StrictMode>
     	<BrowserRouter>
     		<Routes>
-				<Route path="/" element={<App isAuthenticated={isAuthenticated} />}>
-					{isAuthenticated && (
-						<Route path="/" element={<Dashboard />} />
-					)}
+				<Route path="/" element={<App isAuthenticated={isAuthenticated} />} >
+					{appRoutes.map((route: IRoute) => ((!route.isProtected || isAuthenticated) &&
+						<Route key={route.path} path={route.path} element={route.element} />
+					))}
 				</Route>
 			</Routes>
     	</BrowserRouter>
