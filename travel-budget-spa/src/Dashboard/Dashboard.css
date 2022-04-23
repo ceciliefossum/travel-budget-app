@@ -1,21 +1,10 @@
-.balance-container {
-    padding: 40px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.balance-container h1 {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.balance-container p {
-    font-size: 2rem;
-    font-weight: bold;
-}
-
 .statements-container {
     padding: 0 20px;
+}
+
+.balances-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px;
+    margin: 20px 0;
 }

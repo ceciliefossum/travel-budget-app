@@ -1,30 +1,20 @@
 import Statement from "../Shared/Statement";
-import { StatementType, StatementCategory } from "../Interfaces/Enums";
 import './Dashboard.css';
-import { StatementProps } from "../Interfaces/Props";
-
-const statements = [
-    { title: "Campingplass", type: StatementType.Expence, amount: 125, valuta: "NOK", category: StatementCategory.CampingSpot },
-    { title: "Campingplass", type: StatementType.Expence, amount: 125, valuta: "NOK", category: StatementCategory.CampingSpot },
-    { title: "Campingplass", type: StatementType.Expence, amount: 125, valuta: "NOK", category: StatementCategory.CampingSpot },
-    { title: "Campingplass", type: StatementType.Expence, amount: 125, valuta: "NOK", category: StatementCategory.CampingSpot },
-    { title: "Campingplass", type: StatementType.Expence, amount: 125, valuta: "NOK", category: StatementCategory.CampingSpot },
-    { title: "Campingplass", type: StatementType.Expence, amount: 125, valuta: "NOK", category: StatementCategory.CampingSpot },
-    { title: "Campingplass", type: StatementType.Expence, amount: 125, valuta: "NOK", category: StatementCategory.CampingSpot },
-    { title: "Campingplass", type: StatementType.Expence, amount: 125, valuta: "NOK", category: StatementCategory.CampingSpot },
-
-]
+import { statementsTemp, balancesTemp } from "../_Constants/Constants";
+import Balance from "../Shared/Balance";
+import { IBalance, IStatement } from "../_Interfaces/Interfaces";
 
 const Dashboard = () => {
     return (
         <div className="dashboard-container">
-            <div className="balance-container">
-                <h1>Your balance</h1>
-                <p>XXXX</p>
+            <div className="balances-container">
+                {balancesTemp.map((balance: IBalance, index: number) => (
+                    <Balance key={index.toString()} balance={balance} />
+                ))}
             </div>
             <div className="statements-container">
-                {statements.map((statement: StatementProps, index: number) => (
-                    <Statement key={index.toString()} title={statement.title} type={statement.type} amount={statement.amount} valuta={statement.valuta} category={statement.category}  />
+                {statementsTemp.map((statement: IStatement, index: number) => (
+                    <Statement key={index.toString()} statement={statement} />
                 ))}
             </div>
         </div>

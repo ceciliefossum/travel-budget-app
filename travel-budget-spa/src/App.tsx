@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import './App.css';
-import { AppProps } from './Interfaces/Props';
+import { AppProps } from './_Interfaces/Props';
 
 const App = (props: AppProps) => (
     <div className="app">

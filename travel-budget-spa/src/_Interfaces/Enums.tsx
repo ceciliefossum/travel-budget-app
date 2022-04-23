@@ -11,3 +11,8 @@ export enum StatementCategory {
     MediaAndEntertainment = 'MEDIA + ENTERTAINMENT',
     Income = 'INCOME',
 }
+
+export enum BalanceType {
+    TodaysBalance = 'TODAYS BALANCE',
+    AccountBalance = 'ACCOUNT BALANCE'
+}
