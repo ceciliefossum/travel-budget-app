@@ -4,7 +4,8 @@
 
 .balances-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 0 30px;
     margin: 20px 0;
+    flex-wrap: wrap;
 }

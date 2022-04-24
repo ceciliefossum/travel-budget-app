@@ -14,7 +14,8 @@ export enum StatementCategory {
 
 export enum BalanceType {
     TodaysBalance = 'TODAYS BALANCE',
-    AccountBalance = 'ACCOUNT BALANCE',
+    AccountBalance = 'ACCOUNT',
+    PastDaysBalance = 'PAST DAYS',
 }
 
 export enum ButtonStyle {
