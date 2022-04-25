@@ -1,10 +1,10 @@
 import { useState } from "react"; 
-import TextButton from "../Shared/TextButton";
-import DollarSackIcon from "../_Icons/DollarSackIcon";
-import FuelIcon from "../_Icons/FuelIcon";
-import InvoiceIcon from "../_Icons/InvoiceIcon";
-import ShoppingBasketIcon from "../_Icons/ShoppingBasketIcon";
-import { ExpenceCategory, StatementType } from "../_Interfaces/Enums";
+import TextButton from "../../Shared/TextButton";
+import DollarSackIcon from "../../_Icons/DollarSackIcon";
+import FuelIcon from "../../_Icons/FuelIcon";
+import InvoiceIcon from "../../_Icons/InvoiceIcon";
+import ShoppingBasketIcon from "../../_Icons/ShoppingBasketIcon";
+import { ExpenceCategory, StatementType } from "../../_Interfaces/Enums";
 import './AddStatement.css';
 
 

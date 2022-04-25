@@ -1,8 +1,8 @@
-import Statement from "../Shared/Statement";
+import Statement from "../../Shared/Statement";
 import './Dashboard.css';
-import { statementsTemp, balancesTemp } from "../_Constants/Constants";
-import Balance from "../Shared/Balance";
-import { IBalance, IStatement } from "../_Interfaces/Interfaces";
+import { statementsTemp, balancesTemp } from "../../_Constants/Constants";
+import Balance from "../../Shared/Balance";
+import { IBalance, IStatement } from "../../_Interfaces/Interfaces";
 
 const Dashboard = () => {
     return (
