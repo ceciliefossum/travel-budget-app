@@ -28,3 +28,8 @@ export enum ButtonColor {
     SuccessColor,
     DangerColor,
 }
+
+export enum ExpenceCategory {
+    Fuel = 'FUEL',
+    DailyExpence = 'DAILY EXPENCE',
+}

@@ -17,7 +17,7 @@ const getButtonColor = (style: ButtonColor) => {
 }
 
 const IconButton = (props: { icon: JSX.Element, style: ButtonStyle, color: ButtonColor } ) => (
-    <div className={`icon-button-container ${getButtonStyle(props.style)} ${getButtonColor(props.color)}`}>
+    <div className={`icon-button-container ${getButtonStyle(props.style)} ${getButtonColor(props.color)} animated-button`}>
         {props.icon}
     </div>
 );

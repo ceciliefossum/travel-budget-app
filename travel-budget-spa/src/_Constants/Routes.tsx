@@ -1,6 +1,6 @@
 import Budget from "../Budget/Budget";
 import Dashboard from "../Dashboard/Dashboard";
-import AddStatement from "../Shared/AddStatement";
+import AddStatement from "../AddStatement/AddStatement";
 import CalculatorIcon from "../_Icons/CalculatorIcon";
 import PlusIcon from "../_Icons/PlusIcon";
 import ScaleBalancedSolidIcon from "../_Icons/ScaleBalancedSolidIcon";

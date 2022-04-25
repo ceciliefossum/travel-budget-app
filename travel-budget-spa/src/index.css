@@ -30,3 +30,17 @@ body {
   box-sizing: border-box;
   color: var(--main-text-color);
 }
+
+button,
+input,
+select {
+  all: unset;
+}
+
+.animated-button:active {
+  transform: scale(1.1);
+}
+
+.animated-button-big:active {
+  transform: scale(1.05);
+}

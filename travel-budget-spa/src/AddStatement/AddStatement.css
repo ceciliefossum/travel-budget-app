@@ -1,0 +1,32 @@
+.add-statement-container {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    padding: 40px;
+}
+
+.add-statement-container,
+.choose-category-container,
+.choose-statement-container,
+.set-amount-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.choose-statement-container h2,
+.choose-category-container h2,
+.set-amount-container h2 {
+    margin: 40px 0 20px;
+    text-align: center;
+}
+
+.amount-input,
+.valuta-select {
+    border: 1px solid var(--main-text-color);
+    border-radius: 10px;
+    padding: 20px 10px;
+    /* width: 100%; */
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
