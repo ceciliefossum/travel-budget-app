@@ -16,7 +16,7 @@
 }
 
 .app-header h1 {
-	color: var(--success-text-color);
+	color: var(--success-color);
 	margin-bottom: 8px;
 }
 

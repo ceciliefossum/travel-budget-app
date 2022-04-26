@@ -1,17 +1,25 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { appRoutes } from '../_Constants/Routes';
 import { IRoute } from '../_Interfaces/Interfaces';
-import IconButton from './IconButton';
+import Button from './Button';
 import './Navbar.css';
 
-const Navbar = () => (
-    <div className="navbar-container">
-        {appRoutes.map((route: IRoute) => (
-            <Link key={route.path} to={route.path} >
-                <IconButton icon={route.icon} style={route.buttonStyle} color={route.buttonColor} />
-            </Link>
-        ))}
-    </div>
-);
+const Navbar = () => {
+    const navigate = useNavigate();
+
+    return (
+        <div className="navbar-container">
+            {appRoutes.map((route: IRoute) => (
+                <Button
+                    key={route.path}
+                    text={route.title}
+                    icon={route.icon}
+                    className={route.buttonStyle}
+                    onClick={() => navigate(route.path)}
+                />
+            ))}
+        </div>
+    );
+};
 
 export default Navbar;

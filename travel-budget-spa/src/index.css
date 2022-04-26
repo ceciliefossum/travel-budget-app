@@ -1,4 +1,5 @@
 :root {
+  /* COLORS */
   --dark-color: #25282e;
   --medium-dark-color: #30333b;
   --light-color: white;
@@ -10,8 +11,8 @@
   --secondary-background-color: var(--medium-dark-color);
   --main-text-color: var(--light-color);
   --secondary-text-color: var(--medium-light-color);
-  --success-text-color: var(--green-color);
-  --danger-text-color: var(--red-color);
+  --success-color: var(--green-color);
+  --danger-color: var(--red-color);
 }
 
 body {

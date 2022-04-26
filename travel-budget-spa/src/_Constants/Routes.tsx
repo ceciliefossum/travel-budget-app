@@ -4,8 +4,8 @@ import AddStatement from "../Pages/AddStatement/AddStatement";
 import CalculatorIcon from "../_Icons/CalculatorIcon";
 import PlusIcon from "../_Icons/PlusIcon";
 import ScaleBalancedSolidIcon from "../_Icons/ScaleBalancedSolidIcon";
-import { ButtonColor, ButtonStyle } from "../_Interfaces/Enums";
 import { IRoute } from "../_Interfaces/Interfaces";
+import styles from '../Shared/Button.module.css';
 
 export const appRoutes: IRoute[] = [
     { 
@@ -14,8 +14,7 @@ export const appRoutes: IRoute[] = [
         element: <Dashboard />,
         isProtected: true,
         icon: <ScaleBalancedSolidIcon />,
-        buttonStyle: ButtonStyle.Border,
-        buttonColor: ButtonColor.MainColor 
+        buttonStyle: styles['icon-primary-button'],
     },
     { 
         path: '/add',
@@ -23,8 +22,7 @@ export const appRoutes: IRoute[] = [
         element: <AddStatement />,
         isProtected: true,
         icon: <PlusIcon />,
-        buttonStyle: ButtonStyle.Solid,
-        buttonColor: ButtonColor.SuccessColor 
+        buttonStyle: styles['icon-success-button'],
     },
     {
         path: '/budget',
@@ -32,7 +30,6 @@ export const appRoutes: IRoute[] = [
         element: <Budget />,
         isProtected: true,
         icon: <CalculatorIcon />,
-        buttonStyle: ButtonStyle.Border,
-        buttonColor: ButtonColor.MainColor 
+        buttonStyle: styles['icon-primary-button'],
     },
 ]

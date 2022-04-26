@@ -18,17 +18,6 @@ export enum BalanceType {
     PastDaysBalance = 'PAST DAYS',
 }
 
-export enum ButtonStyle {
-    Border,
-    Solid,
-}
-
-export enum ButtonColor {
-    MainColor,
-    SuccessColor,
-    DangerColor,
-}
-
 export enum ExpenceCategory {
     Fuel = 'FUEL',
     DailyExpence = 'DAILY EXPENCE',

@@ -1,0 +1,144 @@
+/* LAYOUT & SPACING */
+.icon-primary-button,
+.icon-success-button,
+.text-icon-primary-big-button,
+.text-icon-success-button,
+.text-icon-danger-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-icon-primary-big-button {
+    flex-direction: column;
+}
+
+.icon-primary-button,
+.icon-success-button {
+    padding: 8px;
+}
+
+.text-icon-success-button,
+.text-icon-danger-button {
+    padding: 8px 10px;
+}
+
+.text-icon-primary-big-button {
+    padding: 30px 0;
+}
+
+.text-icon-success-button,
+.text-icon-danger-button,
+.text-icon-primary-big-button {
+    margin-bottom: 16px;
+}
+
+.text-icon-success-button:last-child,
+.text-icon-danger-button:last-child,
+.text-icon-primary-big-button:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ANIMATION */
+.icon-primary-button:active,
+.icon-success-button:active,
+.text-icon-success-button:active,
+.text-icon-danger-button:active {
+    transform: scale(1.1);
+}
+
+
+/* BACKGROUND COLOR & BORDER */
+.icon-primary-button,
+.text-icon-primary-big-button {
+    border: 1px solid var(--main-text-color);
+}
+
+.icon-success-button,
+.text-icon-success-button {
+    background-color: var(--success-color);
+    border: 1px solid var(--success-color);
+}
+
+.text-icon-danger-button {
+    border: 1px solid var(--danger-color);
+}
+
+.icon-primary-button,
+.icon-success-button {
+    border-radius: 50%;
+}
+
+.text-icon-success-button,
+.text-icon-danger-button,
+.text-icon-primary-big-button {
+    border-radius: 10px;
+}
+
+
+/* TEXT */
+.icon-primary-button span,
+.icon-success-button span {
+    display: none;
+}
+
+.text-icon-success-button span,
+.text-icon-danger-button span {
+    flex-grow: 1;
+}
+
+.text-icon-success-button span,
+.text-icon-danger-button span,
+.text-icon-primary-big-button span {
+    text-align: center;
+}
+
+.text-icon-success-button span,
+.text-icon-danger-button span,
+.text-icon-primary-big-button span {
+    font-weight: bold;
+}
+
+.text-icon-success-button span {
+    color: var(--main-background-color);
+}
+
+.text-icon-danger-button span {
+    color: var(--danger-color);
+}
+
+.text-icon-success-button span,
+.text-icon-danger-button span {
+    margin-left: -1.5rem;
+}
+
+
+/* ICON */
+.icon-primary-button svg,
+.icon-success-button svg,
+.text-icon-success-button svg,
+.text-icon-danger-button svg  {
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.icon-success-button svg,
+.text-icon-success-button svg {
+    fill: var(--main-background-color);
+}
+
+.icon-primary-button svg,
+.text-icon-primary-big-button svg {
+    fill: var(--main-text-color);
+}
+
+.text-icon-danger-button svg {
+    fill: var(--danger-color);
+}
+
+.text-icon-primary-big-button svg {
+    height: 3rem;
+    width: 3rem;
+    margin-bottom: 16px;
+}

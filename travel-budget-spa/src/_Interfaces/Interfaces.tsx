@@ -1,4 +1,4 @@
-import { BalanceType, ButtonColor, ButtonStyle, StatementCategory, StatementType } from "./Enums";
+import { BalanceType, StatementCategory, StatementType } from "./Enums";
 
 export interface IBalance {
     amount: number,
@@ -19,6 +19,5 @@ export interface IRoute {
     element: JSX.Element,
     isProtected: boolean,
     icon: JSX.Element,
-    buttonStyle: ButtonStyle,
-    buttonColor: ButtonColor,
+    buttonStyle: string,
 }
