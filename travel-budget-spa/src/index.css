@@ -45,3 +45,8 @@ select {
 .animated-button-big:active {
   transform: scale(1.05);
 }
+
+.error-message {
+  color: var(--danger-color);
+  font-style: italic;
+}

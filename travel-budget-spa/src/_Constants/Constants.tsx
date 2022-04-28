@@ -8,4 +8,5 @@ export const balancesTemp: IBalance[] = [
 
 export const databaseCollectionNames = {
     transactions: 'transactions',
+    budgetPeriods: 'budget-periods',
 };

@@ -4,9 +4,10 @@ import { balancesTemp, databaseCollectionNames } from "../../_constants/Constant
 import Balance from "../../shared/Balance";
 import { IBalance, ITransaction } from "../../_interfaces/Interfaces";
 import { BalanceType, TransactionType } from "../../_interfaces/Enums";
-import { collection, DocumentData, onSnapshot, query, QuerySnapshot } from "firebase/firestore";
+import { collection, DocumentData, getDocs, onSnapshot, query, QuerySnapshot, Unsubscribe, where } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../../firebaseSetup";
+
 
 const Dashboard = () => {
     const [transactions, setTransactions] = useState<ITransaction[]>();
@@ -16,22 +17,44 @@ const Dashboard = () => {
         return transaction.type === TransactionType.Expence ? currentAmount - transaction.amount : currentAmount + transaction.amount;
     }
 
+    const getTransactionUnsubscription = (): Unsubscribe => {
+        const q = query(collection(db, databaseCollectionNames.transactions));
+        const unsub = onSnapshot(q, (snapshot: QuerySnapshot<DocumentData>) => {
+            const transactionsTemp: ITransaction[] = [];
+            let accountBalanceTemp = 0;
+            snapshot.forEach((doc) => {
+                const transaction = doc.data() as ITransaction;
+                transactionsTemp.push({ ...transaction, date: new Date(transaction.date)});
+                accountBalanceTemp = getAddedValue(transaction, accountBalanceTemp);
+            });
+            setTransactions(transactionsTemp.reverse());
+            setAccountBalance(accountBalanceTemp);
+        });
+
+        return unsub;
+    }
+
+    const getLatestBudgetPeriod = async () => {
+        const budgetPeriodRef = collection(db, databaseCollectionNames.budgetPeriods);
+        const q = query(budgetPeriodRef, where("endDate", ">", new Date()));
+
+        const querySnapshot = await getDocs(q);
+        querySnapshot.forEach((doc) => {
+            console.log(doc.id, " => ", doc.data());
+            const budgetPeriod: { endDate: Date, startDate: Date } = {
+                startDate: doc.data().startDate.toDate(),
+                endDate: doc.data().endDate.toDate(),
+            };
+            console.log(budgetPeriod);
+        });
+    }
+
     useEffect(() => {
         try {
-            const q = query(collection(db, databaseCollectionNames.transactions));
-            const unsub = onSnapshot(q, (snapshot: QuerySnapshot<DocumentData>) => {
-                const transactionsTemp: ITransaction[] = [];
-                let accountBalanceTemp = 0;
-                snapshot.forEach((doc) => {
-                    const transaction = doc.data() as ITransaction;
-                    transactionsTemp.push({ ...transaction, date: new Date(transaction.date)});
-                    accountBalanceTemp = getAddedValue(transaction, accountBalanceTemp);
-                });
-                setTransactions(transactionsTemp.reverse());
-                setAccountBalance(accountBalanceTemp);
-            });
+            const unsubTransations = getTransactionUnsubscription();
+            getLatestBudgetPeriod();
 
-            return () => unsub();
+            return () => unsubTransations();
         } catch (error) {
             console.log(error);
         }
