@@ -26,6 +26,6 @@
     color: var(--success-color);
 }
 
-.balance-container .negative-amount {
+.balance-container p.negative-amount {
     color: var(--danger-color);
 }
