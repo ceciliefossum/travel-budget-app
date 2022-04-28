@@ -6,8 +6,6 @@ import { appRoutePaths, appRoutes } from './_constants/Routes';
 import { IRoute } from './_interfaces/Interfaces';
 import { AuthContext } from './_store/AuthContext';
 
-const isAuthenticated = false;
-
 const App = () => {
 	const user = useContext(AuthContext);
 	console.log(user);
