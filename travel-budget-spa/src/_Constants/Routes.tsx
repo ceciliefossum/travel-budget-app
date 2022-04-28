@@ -1,6 +1,6 @@
 import Budget from "../pages/Budget/Budget";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import AddStatement from "../pages/AddStatement/AddStatement";
+import AddStatement from "../pages/AddTransaction/AddTransaction";
 import { IRoute } from "../_interfaces/Interfaces";
 import SignIn from "../pages/SignIn/SignIn";
 

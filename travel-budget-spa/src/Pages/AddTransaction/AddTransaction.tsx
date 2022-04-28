@@ -6,40 +6,39 @@ import FuelIcon from "../../shared/Icons/FuelIcon";
 import InvoiceIcon from "../../shared/Icons/InvoiceIcon";
 import ShoppingBasketIcon from "../../shared/Icons/ShoppingBasketIcon";
 import styles from "../../shared/Button.module.css";
-import './AddStatement.css';
+import './AddTransaction.css';
 import PlusIcon from "../../shared/Icons/PlusIcon";
 import CancelIcon from "../../shared/Icons/CancelIcon";
-import { ExpenceCategory, StatementType } from "../../_interfaces/Enums";
-
+import { ExpenceCategory, TransactionType } from "../../_interfaces/Enums";
 
 
 const AddStatement = () => {
     const navigate = useNavigate();
-    const [statement, setStatement] = useState<StatementType | undefined>(undefined)
+    const [transactionType, setTransactionType] = useState<TransactionType | undefined>(undefined)
     const [expenceCategory, setExpenceCategory] = useState<ExpenceCategory>();
     const [amount, setAmount] = useState<number>();
     
     return (
-        <div className="add-statement-container">
-            {!statement && (
+        <div className="add-transaction-container">
+            {!transactionType && (
                 <React.Fragment>
                     <h2>Add expence or income</h2>
                     <Button
                         text="Add Income"
                         icon={<DollarSackIcon />}
                         className={styles['text-icon-primary-big-button']}
-                        onClick={() => setStatement(StatementType.Income)}
+                        onClick={() => setTransactionType(TransactionType.Income)}
                     />
                     <Button
                         text="Add Expence"
                         icon={<InvoiceIcon />}
                         className={styles['text-icon-primary-big-button']}
-                        onClick={() => setStatement(StatementType.Expence)}
+                        onClick={() => setTransactionType(TransactionType.Expence)}
                     />
                 </React.Fragment>
             )}
     
-            {(statement === StatementType.Expence && !expenceCategory) && (
+            {(transactionType === TransactionType.Expence && !expenceCategory) && (
                 <React.Fragment>
                     <h2>Type of expence</h2>
                     <Button
@@ -57,7 +56,7 @@ const AddStatement = () => {
                 </React.Fragment>
             )}
 
-            {(statement === StatementType.Income || !!expenceCategory) && (
+            {(transactionType === TransactionType.Income || !!expenceCategory) && (
                 <React.Fragment>
                     <h2>Enter the amount</h2>
                     <input className="amount-input" aria-label="amount" type="number" placeholder="0" />

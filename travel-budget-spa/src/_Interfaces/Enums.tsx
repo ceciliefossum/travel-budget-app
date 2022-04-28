@@ -1,9 +1,9 @@
-export enum StatementType {
+export enum TransactionType {
     Income = 'INCOME',
     Expence = 'EXPENCE',
 }
 
-export enum StatementCategory {
+export enum TransactionCategory {
     CampingSpot = 'CAMPING SPOT',
     Food = 'FOOD',
     Insurance = 'INSURANCE',

@@ -1,16 +1,16 @@
-import { BalanceType, StatementCategory, StatementType } from "./Enums";
+import { BalanceType, TransactionCategory, TransactionType } from "./Enums";
 
 export interface IBalance {
     amount: number,
     type: BalanceType,
 }
 
-export interface IStatement {
-    type: StatementType,
+export interface ITransaction {
+    type: TransactionType,
     title: string,
     amount: number,
     valuta: string,
-    category: StatementCategory,
+    category: TransactionCategory,
 }
 
 export interface IRoute {
