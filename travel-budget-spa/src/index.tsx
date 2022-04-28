@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { appRoutes } from './_Constants/Routes';
-import { IRoute } from './_Interfaces/Interfaces';
 
-const isAuthenticated = true;
+const isAuthenticated = false;
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -15,13 +13,7 @@ const root = ReactDOM.createRoot(
 root.render(
 	<React.StrictMode>
     	<BrowserRouter>
-    		<Routes>
-				<Route path="/" element={<App isAuthenticated={isAuthenticated} />} >
-					{appRoutes.map((route: IRoute) => ((!route.isProtected || isAuthenticated) &&
-						<Route key={route.path} path={route.path} element={route.element} />
-					))}
-				</Route>
-			</Routes>
+			<App isAuthenticated={isAuthenticated} />
     	</BrowserRouter>
   	</React.StrictMode>
 );

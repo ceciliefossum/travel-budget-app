@@ -27,11 +27,7 @@
 	font-size: 0.8rem;
 }
 
-.app-header.header-expanded {
-  	min-height: 100vh;
-}
-
-.app-header:not(.header-expanded) h1 {
+.app-header h1 {
 	margin: 5px 0 8px;
   	font-size: 1rem;
 }
