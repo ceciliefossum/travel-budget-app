@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { signInWithRedirect, getRedirectResult, GoogleAuthProvider, UserCredential, OAuthCredential, User } from "firebase/auth";
+import { signInWithRedirect, getRedirectResult, GoogleAuthProvider, UserCredential } from "firebase/auth";
 import Button from "../../shared/Button";
 import GoogleIcon from "../../shared/Icons/GoogleIcon";
 import styles from "../../shared/Button.module.css";
