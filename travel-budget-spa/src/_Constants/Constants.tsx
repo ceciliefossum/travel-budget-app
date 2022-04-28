@@ -7,14 +7,14 @@ export const balancesTemp: IBalance[] = [
 ];
 
 export const transactionsTemp: ITransaction[] = [
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.CampingSpot },
-    { title: "Campingplass", type: TransactionType.Income, amount: 2000, valuta: "NOK", category: TransactionCategory.Income },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Expence, amount: 125, valuta: "NOK", category: TransactionCategory.DailyExpence, date: new Date() },
+    { type: TransactionType.Income, amount: 2000, valuta: "NOK", category: TransactionCategory.Income, date: new Date() },
 ];

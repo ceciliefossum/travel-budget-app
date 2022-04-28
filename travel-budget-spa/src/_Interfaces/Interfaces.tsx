@@ -7,10 +7,10 @@ export interface IBalance {
 
 export interface ITransaction {
     type: TransactionType,
-    title: string,
     amount: number,
     valuta: string,
     category: TransactionCategory,
+    date: Date,
 }
 
 export interface IRoute {

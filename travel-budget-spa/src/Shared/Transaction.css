@@ -18,6 +18,7 @@
 .transaction-container .information h2 {
     font-size: 1.3rem;
     font-weight: normal;
+    text-transform: capitalize
 }
 
 .transaction-container .amount {

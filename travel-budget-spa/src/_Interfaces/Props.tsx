@@ -10,3 +10,7 @@ export type ButtonProps = {
     onClick: Function,
     className: string, 
 }
+
+export type LoadingProps = {
+    text: string,
+}

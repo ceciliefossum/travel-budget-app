@@ -1,6 +1,6 @@
 import Budget from "../pages/Budget/Budget";
 import Dashboard from "../pages/Dashboard/Dashboard";
-import AddStatement from "../pages/AddTransaction/AddTransaction";
+import AddTransaction from "../pages/AddTransaction/AddTransaction";
 import { IRoute } from "../_interfaces/Interfaces";
 import SignIn from "../pages/SignIn/SignIn";
 
@@ -21,7 +21,7 @@ export const appRoutes: IRoute[] = [
     { 
         path: appRoutePaths.addStatement,
         title: 'Add statement',
-        element: <AddStatement />,
+        element: <AddTransaction />,
         isProtected: true,
     },
     {
