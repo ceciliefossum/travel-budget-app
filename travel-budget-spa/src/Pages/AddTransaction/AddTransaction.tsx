@@ -13,6 +13,7 @@ import CancelIcon from "../../shared/Icons/CancelIcon";
 import { TransactionCategory, TransactionType } from "../../_interfaces/Enums";
 import { db } from "../../firebaseSetup";
 import Loading from "../../shared/Loading";
+import { databaseCollectionNames } from "../../_constants/Constants";
 
 const AddTransaction = () => {
     const navigate = useNavigate();
@@ -35,7 +36,7 @@ const AddTransaction = () => {
             const data = { type, category, amount, valuta, date: new Date().toISOString() };
             if (data.amount && data.valuta) {
                 setLoadingText('Adding transaction...');
-                await addDoc(collection(db, 'transactions'), data);
+                await addDoc(collection(db, databaseCollectionNames.transactions), data);
                 setInitialValues();
             } else {
                 throw new Error('All fields must have a value');
