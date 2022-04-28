@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { appMenuItems } from '../_Constants/MenuItems';
-import { IMenyItem } from '../_Interfaces/Interfaces';
+import { appMenuItems } from '../_constants/MenuItems';
+import { IMenyItem } from '../_interfaces/Interfaces';
 import Button from './Button';
 import './Navbar.css';
 

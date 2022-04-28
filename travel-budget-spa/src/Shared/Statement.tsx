@@ -1,6 +1,6 @@
-import { StatementType } from "../_Interfaces/Enums";
+import { StatementType } from "../_interfaces/Enums";
 import './Statement.css'
-import { IStatement } from "../_Interfaces/Interfaces";
+import { IStatement } from "../_interfaces/Interfaces";
 
 const Statement = (props: { statement: IStatement }) => (
     <div className="statement-container">

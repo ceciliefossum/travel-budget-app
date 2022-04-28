@@ -1,9 +1,9 @@
-import CalculatorIcon from "../_Icons/CalculatorIcon";
-import PlusIcon from "../_Icons/PlusIcon";
-import ScaleBalancedSolidIcon from "../_Icons/ScaleBalancedSolidIcon";
-import { IMenyItem, IRoute } from "../_Interfaces/Interfaces";
+import CalculatorIcon from "../shared/Icons/CalculatorIcon";
+import PlusIcon from "../shared/Icons/PlusIcon";
+import ScaleBalancedSolidIcon from "../shared/Icons/ScaleBalancedSolidIcon";
+import { IMenyItem, IRoute } from "../_interfaces/Interfaces";
 import { appRoutePaths, appRoutes } from "./Routes";
-import styles from '../Shared/Button.module.css';
+import styles from '../shared/Button.module.css';
 
 const menuItemPaths = [
     appRoutePaths.home,

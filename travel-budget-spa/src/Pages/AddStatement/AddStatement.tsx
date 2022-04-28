@@ -1,15 +1,15 @@
 import React, { useState } from "react"; 
 import { useNavigate } from "react-router-dom";
-import Button from "../../Shared/Button";
-import DollarSackIcon from "../../_Icons/DollarSackIcon";
-import FuelIcon from "../../_Icons/FuelIcon";
-import InvoiceIcon from "../../_Icons/InvoiceIcon";
-import ShoppingBasketIcon from "../../_Icons/ShoppingBasketIcon";
-import { ExpenceCategory, StatementType } from "../../_Interfaces/Enums";
-import styles from "../../Shared/Button.module.css";
+import Button from "../../shared/Button";
+import DollarSackIcon from "../../shared/Icons/DollarSackIcon";
+import FuelIcon from "../../shared/Icons/FuelIcon";
+import InvoiceIcon from "../../shared/Icons/InvoiceIcon";
+import ShoppingBasketIcon from "../../shared/Icons/ShoppingBasketIcon";
+import styles from "../../shared/Button.module.css";
 import './AddStatement.css';
-import PlusIcon from "../../_Icons/PlusIcon";
-import CancelIcon from "../../_Icons/CancelIcon";
+import PlusIcon from "../../shared/Icons/PlusIcon";
+import CancelIcon from "../../shared/Icons/CancelIcon";
+import { ExpenceCategory, StatementType } from "../../_interfaces/Enums";
 
 
 

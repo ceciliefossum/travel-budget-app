@@ -1,4 +1,4 @@
-import { IBalance } from "../_Interfaces/Interfaces";
+import { IBalance } from "../_interfaces/Interfaces";
 import './Balance.css';
 
 const getBalanceClassName = (amount: number) :string => {

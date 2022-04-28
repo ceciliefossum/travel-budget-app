@@ -1,5 +1,5 @@
-import { BalanceType, StatementCategory, StatementType } from "../_Interfaces/Enums"
-import { IBalance, IStatement } from "../_Interfaces/Interfaces";
+import { BalanceType, StatementCategory, StatementType } from "../_interfaces/Enums"
+import { IBalance, IStatement } from "../_interfaces/Interfaces";
 
 export const balancesTemp: IBalance[] = [
     { type: BalanceType.TodaysBalance, amount: 100 },

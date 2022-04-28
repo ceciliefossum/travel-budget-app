@@ -1,5 +1,5 @@
-import Button from "../../Shared/Button";
-import styles from "../../Shared/Button.module.css";
+import Button from "../../shared/Button";
+import styles from "../../shared/Button.module.css";
 
 const Budget = () => (
     <div className="budget-container">

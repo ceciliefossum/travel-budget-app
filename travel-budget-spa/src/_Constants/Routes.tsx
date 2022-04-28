@@ -1,8 +1,8 @@
-import Budget from "../Pages/Budget/Budget";
-import Dashboard from "../Pages/Dashboard/Dashboard";
-import AddStatement from "../Pages/AddStatement/AddStatement";
-import { IRoute } from "../_Interfaces/Interfaces";
-import SignIn from "../Pages/SignIn/SignIn";
+import Budget from "../pages/Budget/Budget";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import AddStatement from "../pages/AddStatement/AddStatement";
+import { IRoute } from "../_interfaces/Interfaces";
+import SignIn from "../pages/SignIn/SignIn";
 
 export const appRoutePaths = {
     home: '/',
