@@ -18,6 +18,9 @@ export interface IRoute {
     title: string,
     element: JSX.Element,
     isProtected: boolean,
+}
+
+export interface IMenyItem extends IRoute {
     icon: JSX.Element,
     buttonStyle: string,
 }

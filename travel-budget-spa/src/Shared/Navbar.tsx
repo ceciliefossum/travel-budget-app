@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { appRoutes } from '../_Constants/Routes';
-import { IRoute } from '../_Interfaces/Interfaces';
+import { appMenuItems } from '../_Constants/MenuItems';
+import { IMenyItem } from '../_Interfaces/Interfaces';
 import Button from './Button';
 import './Navbar.css';
 
@@ -9,7 +9,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar-container">
-            {appRoutes.map((route: IRoute) => (
+            {appMenuItems.map((route: IMenyItem) => (
                 <Button
                     key={route.path}
                     text={route.title}
