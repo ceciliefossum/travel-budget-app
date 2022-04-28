@@ -5,13 +5,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { AuthProvider } from './_store/AuthContext';
-import { firebaseConfig } from './_firebase/Firebase';
-import { initializeApp } from "firebase/app";
 
-const isAuthenticated = false;
-
-// Initialize Firebase
-// initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(
 	document.getElementById('root') as HTMLElement
@@ -20,7 +14,7 @@ root.render(
 	<React.StrictMode>
 		<AuthProvider>
 			<BrowserRouter>
-				<App isAuthenticated={isAuthenticated} />
+				<App />
 			</BrowserRouter>
 		</AuthProvider>
   	</React.StrictMode>

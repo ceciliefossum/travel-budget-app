@@ -4,12 +4,11 @@ import './App.css';
 import Navbar from './shared/Navbar';
 import { appRoutePaths, appRoutes } from './_constants/Routes';
 import { IRoute } from './_interfaces/Interfaces';
-import { AppProps } from './_interfaces/Props';
 import { AuthContext } from './_store/AuthContext';
 
 const isAuthenticated = false;
 
-const App = (props: AppProps) => {
+const App = () => {
 	const user = useContext(AuthContext);
 	console.log(user);
 
