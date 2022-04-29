@@ -1,3 +1,7 @@
+.dashboard-container {
+    height: 100%;
+}
+
 .transactions-container {
     padding: 0 20px;
 }

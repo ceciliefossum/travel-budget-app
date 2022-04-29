@@ -14,6 +14,11 @@ export interface ITransaction {
     date: Date,
 }
 
+export interface IBudgetPeriod {
+    startDate: Date,
+    endDate: Date,
+}
+
 export interface IRoute {
     path: string,
     title: string,

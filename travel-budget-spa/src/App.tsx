@@ -9,16 +9,15 @@ import { AuthContext } from './_store/AuthContext';
 
 const App = () => {
 	const userState = useContext(AuthContext);
-	console.log(userState);
 
 	return (
 		<div className="app">
+			<header className={`app-header`}>
+					<h1>TravelBudget</h1>
+			</header>
 			{userState.isLoading && <Loading text={'Checking sign in status...'} />}
 			{!userState.isLoading && (
 				<React.Fragment>
-					<header className={`app-header`}>
-						<h1>TravelBudget</h1>
-					</header>
 					<div className="main-content-container">
 						<Routes>
 							{appRoutes.map((route: IRoute) => ((route.isProtected === !!userState) &&
