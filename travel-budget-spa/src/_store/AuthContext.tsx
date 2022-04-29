@@ -6,8 +6,6 @@ export const AuthContext = React.createContext<User | null | undefined>(undefine
 
 export const AuthProvider = (props: { children: JSX.Element }) => {
     const [user, setUser] = useState<User | null>(null);
-    auth.setPersistence({type: 'LOCAL'});
-
   
     useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
