@@ -10,6 +10,7 @@ import { db } from "../../firebaseSetup";
 
 
 const Dashboard = () => {
+    const [budgetPeriod, setBudgetPeriod] = useState<{ startDate: Date, endDate: Date }>();
     const [transactions, setTransactions] = useState<ITransaction[]>();
     const [accountBalance, setAccountBalance] = useState<number>(0);
 
@@ -17,21 +18,26 @@ const Dashboard = () => {
         return transaction.type === TransactionType.Expence ? currentAmount - transaction.amount : currentAmount + transaction.amount;
     }
 
-    const getTransactionUnsubscription = (): Unsubscribe => {
-        const q = query(collection(db, databaseCollectionNames.transactions));
-        const unsub = onSnapshot(q, (snapshot: QuerySnapshot<DocumentData>) => {
-            const transactionsTemp: ITransaction[] = [];
-            let accountBalanceTemp = 0;
-            snapshot.forEach((doc) => {
-                const transaction = doc.data() as ITransaction;
-                transactionsTemp.push({ ...transaction, date: new Date(transaction.date)});
-                accountBalanceTemp = getAddedValue(transaction, accountBalanceTemp);
+    const getTransactionUnsubscription = (): Unsubscribe | null  => {
+        if (!!budgetPeriod) {
+            const transactionsRef = collection(db, databaseCollectionNames.transactions);
+            const q = query(transactionsRef, where('date', '>', budgetPeriod.startDate));
+            const unsub = onSnapshot(q, (snapshot: QuerySnapshot<DocumentData>) => {
+                const transactionsTemp: ITransaction[] = [];
+                let accountBalanceTemp = 0;
+                snapshot.forEach((doc) => {
+                    const transaction = doc.data() as ITransaction;
+                    transactionsTemp.push({ ...transaction, date: doc.data().date.toDate()});
+                    accountBalanceTemp = getAddedValue(transaction, accountBalanceTemp);
+                });
+                setTransactions(transactionsTemp.reverse());
+                setAccountBalance(accountBalanceTemp);
             });
-            setTransactions(transactionsTemp.reverse());
-            setAccountBalance(accountBalanceTemp);
-        });
 
-        return unsub;
+            return unsub;
+        }
+
+        return null;
     }
 
     const getLatestBudgetPeriod = async () => {
@@ -40,26 +46,30 @@ const Dashboard = () => {
 
         const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
-            console.log(doc.id, " => ", doc.data());
-            const budgetPeriod: { endDate: Date, startDate: Date } = {
+            const budgetPeriodTemp: { endDate: Date, startDate: Date } = {
                 startDate: doc.data().startDate.toDate(),
                 endDate: doc.data().endDate.toDate(),
             };
-            console.log(budgetPeriod);
+            setBudgetPeriod(budgetPeriodTemp);
         });
     }
 
     useEffect(() => {
         try {
+            if (!budgetPeriod) {
+                getLatestBudgetPeriod();
+            }
             const unsubTransations = getTransactionUnsubscription();
-            getLatestBudgetPeriod();
 
-            return () => unsubTransations();
+            if (unsubTransations) {
+                return () => unsubTransations();
+            }
+
         } catch (error) {
             console.log(error);
         }
 
-    }, []);
+    }, [budgetPeriod, getTransactionUnsubscription]);
 
     return (
         <div className="dashboard-container">

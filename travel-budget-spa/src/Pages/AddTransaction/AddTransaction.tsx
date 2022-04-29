@@ -33,7 +33,7 @@ const AddTransaction = () => {
 
     const addTransactionHandler = async () => {
         try {
-            const data = { type, category, amount, valuta, date: new Date().toISOString() };
+            const data = { type, category, amount, valuta, date: new Date() };
             if (data.amount && data.valuta) {
                 setLoadingText('Adding transaction...');
                 await addDoc(collection(db, databaseCollectionNames.transactions), data);
