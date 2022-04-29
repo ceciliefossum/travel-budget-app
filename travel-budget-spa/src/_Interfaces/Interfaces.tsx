@@ -1,3 +1,4 @@
+import { User } from "firebase/auth";
 import { BalanceType, TransactionCategory, TransactionType } from "./Enums";
 
 export interface IBalance {
@@ -23,4 +24,10 @@ export interface IRoute {
 export interface IMenyItem extends IRoute {
     icon: JSX.Element,
     buttonStyle: string,
+}
+
+export interface IUserState {
+    user: User | null,
+    isLoading: boolean,
+    error: string | null,
 }

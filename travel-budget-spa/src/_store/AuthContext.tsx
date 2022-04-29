@@ -1,20 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { User } from "firebase/auth"
 import { auth } from "../firebaseSetup";
+import { IUserState } from "../_interfaces/Interfaces";
 
-export const AuthContext = React.createContext<User | null | undefined>(undefined);
+const initiaUserState = {
+	user: auth.currentUser,
+	isLoading: auth.currentUser ? false : true,
+	error: null,
+}
+
+export const AuthContext = React.createContext<IUserState>(initiaUserState);
 
 export const AuthProvider = (props: { children: JSX.Element }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [userState, setUserState] = useState<IUserState>(initiaUserState);
   
     useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
-			setUser(user);
-		});
+		const onChange = (user: User | null) => {
+			setUserState({user, isLoading: false, error: null});
+		};
+		const onError = (error: Error) => {
+			console.log(error);
+			setUserState({user: null, isLoading: false, error: 'Authentication failed.'});
+		}
+		const unsubscribe = auth.onIdTokenChanged(onChange, onError);
 	
 		return unsubscribe;
-    }, [user]);
+    }, []);
 
     
-    return <AuthContext.Provider value={user}>{props.children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={userState}>{props.children}</AuthContext.Provider>;
   };
