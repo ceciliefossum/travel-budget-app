@@ -8,11 +8,12 @@ import { collection, DocumentData, getDocs, onSnapshot, query, QuerySnapshot, Un
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebaseSetup";
 import Loading from "../../shared/Loading";
-import { getAccountBalance, getDailyBudget, getTodaysBalance } from "../../_helpers/utilities";
+import { getAccountBalance, getDailyBudget, getDayDifference, getTodaysBalance } from "../../_helpers/utilities";
 
 
 const Dashboard = () => {
     const [budgetPeriod, setBudgetPeriod] = useState<IBudgetPeriod>();
+    const [daysLeft, setDaysLeft] = useState<number>(0);
     const [transactions, setTransactions] = useState<ITransaction[]>();
     const [accountBalance, setAccountBalance] = useState<number>(0);
     const [dailyBudget, setDailyBudget] = useState<number>(0);
@@ -50,6 +51,7 @@ const Dashboard = () => {
                         const dailyBudget = getDailyBudget(transactionsTemp, budgetPeriod);
                         setDailyBudget(dailyBudget);
                         setTodaysBalance(getTodaysBalance(transactionsTemp, dailyBudget));
+                        setDaysLeft(getDayDifference(new Date(), budgetPeriod.endDate) + 1);
                         setIsLoading(false);
                     });
 
@@ -86,6 +88,7 @@ const Dashboard = () => {
                                 <Balance balance={{ amount: todaysBalance, type: BalanceType.TodaysBalance }} />
                                 <Balance balance={{ amount: dailyBudget, type: BalanceType.DailyBudget }} />
                                 <Balance balance={{ amount: accountBalance, type: BalanceType.AccountBalance }} />
+                                <Balance balance={{ amount: daysLeft, type: BalanceType.DaysLeft }} />
                             </React.Fragment>
                         )}
                         

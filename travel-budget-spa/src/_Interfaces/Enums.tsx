@@ -5,8 +5,9 @@ export enum TransactionType {
 
 export enum BalanceType {
     TodaysBalance = 'TODAYS BALANCE',
-    AccountBalance = 'ACCOUNT BALANCE',
+    AccountBalance = 'ACCOUNT',
     DailyBudget = 'DAILY BUDGET',
+    DaysLeft = 'DAYS LEFT',
 }
 
 export enum TransactionCategory {

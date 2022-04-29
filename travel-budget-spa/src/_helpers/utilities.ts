@@ -6,12 +6,6 @@ const getAddedValue = (transaction: ITransaction, currentAmount: number): number
     return transaction.type === TransactionType.Expence ? currentAmount - transaction.amount : currentAmount + transaction.amount;
 };
 
-const getDayDifference = (fromDate: Date, untilDate: Date): number  => {
-    untilDate.setHours(0, 0, 0);
-    fromDate.setHours(0, 0, 0);
-    return (untilDate.getTime() - fromDate.getTime()) / ((1000 * 3600 * 24));
-};
-
 const getBudget = (total: number, fromDate: Date, untilDate: Date): number => {
     return total / (getDayDifference(fromDate, untilDate) + 1);
 };
@@ -32,6 +26,19 @@ const getSummarizedAmount = (
         .filter((transactions: ITransaction) => !untilDate || transactions.date < untilDate)
         .filter((transactions: ITransaction) => !categories || categories.includes(transactions.category))
         .reduce((prevAmount: number, currentTransaction: ITransaction) => getAddedValue(currentTransaction, prevAmount), 0);
+};
+
+/** 
+ * Returns the number of days between fromDate and untilDate
+ * @param {Date} fromDate
+ * @param {Date} untilDate
+ * @returns the number of days between fromDate and untilDate
+ * */
+export const getDayDifference = (fromDate: Date, untilDate: Date): number  => {
+    untilDate.setHours(0, 0, 0);
+    fromDate.setHours(0, 0, 0);
+    const numberOfDays = (untilDate.getTime() - fromDate.getTime()) / ((1000 * 3600 * 24));
+    return getRoundedNumber(numberOfDays);
 };
 
 /** 
