@@ -20,12 +20,12 @@ const App = () => {
 				<React.Fragment>
 					<div className="main-content-container">
 						<Routes>
-							{appRoutes.map((route: IRoute) => ((route.isProtected === !!userState) &&
+							{appRoutes.map((route: IRoute) => ((route.isProtected === !!userState.user) &&
 								<Route key={route.path} path={route.path} element={route.element} />
 							))}
 							<Route	
 								path="*"
-								element={!!userState ? <Navigate to={appRoutePaths.home} /> : <Navigate to={appRoutePaths.signIn} />}
+								element={!!userState.user ? <Navigate to={appRoutePaths.home} /> : <Navigate to={appRoutePaths.signIn} />}
 							/>
 						</Routes>
 					</div>

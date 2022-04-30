@@ -60,8 +60,8 @@ export const getAccountBalance = (transactions: ITransaction[]): number => {
  * */
 export const getDailyBudget = (transactions: ITransaction[], budgetPeriod: IBudgetPeriod): number => {
     const yesterday = new Date();
-    yesterday.setDate(-1);
-    yesterday.setHours(0, 0, 0);
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(23, 59, 59);
     const totalIncome = getSummarizedAmount(transactions, budgetPeriod.startDate, new Date(), [TransactionCategory.Income]);
     const totalExpenses = getSummarizedAmount(transactions, budgetPeriod.startDate, yesterday, [TransactionCategory.DailyExpence]);
     const total = totalIncome + totalExpenses;
