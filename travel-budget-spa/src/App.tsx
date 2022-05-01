@@ -13,19 +13,34 @@ const App = () => {
 	return (
 		<div className="app">
 			<header className={`app-header`}>
-					<h1>TravelBudget</h1>
+				<h1>TravelBudget</h1>
 			</header>
-			{userState.isLoading && <Loading text={'Checking sign in status...'} />}
+			{userState.isLoading && (
+				<Loading text={'Checking sign in status...'} />
+			)}
 			{!userState.isLoading && (
 				<React.Fragment>
 					<div className="main-content-container">
 						<Routes>
-							{appRoutes.map((route: IRoute) => ((route.isProtected === !!userState.user) &&
-								<Route key={route.path} path={route.path} element={route.element} />
-							))}
-							<Route	
+							{appRoutes.map(
+								(route: IRoute) =>
+									route.isProtected === !!userState.user && (
+										<Route
+											key={route.path}
+											path={route.path}
+											element={route.element}
+										/>
+									)
+							)}
+							<Route
 								path="*"
-								element={!!userState.user ? <Navigate to={appRoutePaths.home} /> : <Navigate to={appRoutePaths.signIn} />}
+								element={
+									userState.user ? (
+										<Navigate to={appRoutePaths.home} />
+									) : (
+										<Navigate to={appRoutePaths.signIn} />
+									)
+								}
 							/>
 						</Routes>
 					</div>
