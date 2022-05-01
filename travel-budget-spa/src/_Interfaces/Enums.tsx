@@ -1,6 +1,7 @@
 export enum TransactionType {
     Income = 'INCOME',
-    Expence = 'EXPENCE',
+    DailyExpence = 'DAILY EXPENCE',
+    Fuel = 'FUEL',
 }
 
 export enum BalanceType {
@@ -10,8 +11,3 @@ export enum BalanceType {
     DaysLeft = 'DAYS LEFT',
 }
 
-export enum TransactionCategory {
-    Fuel = 'FUEL',
-    DailyExpence = 'DAILY EXPENCE',
-    Income = 'INCOME',
-}

@@ -1,10 +1,5 @@
-import { TransactionCategory, TransactionType } from "../_interfaces/Enums";
+import { TransactionType } from "../_interfaces/Enums";
 import { IBudgetPeriod, ITransaction } from "../_interfaces/Interfaces";
-
-
-const getAddedValue = (transaction: ITransaction, currentAmount: number): number => {
-    return transaction.type === TransactionType.Expence ? currentAmount - transaction.amount : currentAmount + transaction.amount;
-};
 
 const getBudget = (total: number, fromDate: Date, untilDate: Date): number => {
     return total / (getDayDifference(fromDate, untilDate) + 1);
@@ -14,18 +9,14 @@ const getRoundedNumber = (number: number): number => {
     return Number(number.toFixed());
 }
 
-const getSummarizedAmount = (
-    transactions: ITransaction[],
-    fromDate?: Date,
-    untilDate?: Date,
-    categories?: TransactionCategory[],
+const getSummarizedAmount = (transactions: ITransaction[], fromDate?: Date, untilDate?: Date, types?: TransactionType[],
 
 ): number => {
     return transactions
         .filter((transaction: ITransaction) => !fromDate || transaction.date > fromDate)
         .filter((transactions: ITransaction) => !untilDate || transactions.date < untilDate)
-        .filter((transactions: ITransaction) => !categories || categories.includes(transactions.category))
-        .reduce((prevAmount: number, currentTransaction: ITransaction) => getAddedValue(currentTransaction, prevAmount), 0);
+        .filter((transactions: ITransaction) => !types || types.includes(transactions.type))
+        .reduce((prevAmount: number, currentTransaction: ITransaction) => currentTransaction.amount + prevAmount, 0);
 };
 
 /** 
@@ -62,14 +53,13 @@ export const getDailyBudget = (transactions: ITransaction[], budgetPeriod: IBudg
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
     yesterday.setHours(23, 59, 59);
-    const totalIncome = getSummarizedAmount(transactions, budgetPeriod.startDate, new Date(), [TransactionCategory.Income]);
-    const totalExpenses = getSummarizedAmount(transactions, budgetPeriod.startDate, yesterday, [TransactionCategory.DailyExpence]);
+    const totalIncome = getSummarizedAmount(transactions, budgetPeriod.startDate, new Date(), [TransactionType.Income]);
+    const totalExpenses = getSummarizedAmount(transactions, budgetPeriod.startDate, yesterday, [TransactionType.DailyExpence]);
     const total = totalIncome + totalExpenses;
     const budget = getBudget(total, new Date(), budgetPeriod.endDate);
     return getRoundedNumber(budget);
 }
 
-// todays balance = daily budget - all daily expence transactions current day
 /** 
  * Returns todays balance, all daily expences subtracted from the budget 
  * @param {ITransaction[]} transactions
@@ -81,7 +71,7 @@ export const getTodaysBalance = (transactions: ITransaction[], budget: number): 
     const endOfDay = new Date();
     startOfDay.setHours(0, 0, 0);
     endOfDay.setHours(23, 59, 59);
-    const total = budget + getSummarizedAmount(transactions, startOfDay, endOfDay, [TransactionCategory.DailyExpence]);
+    const total = budget + getSummarizedAmount(transactions, startOfDay, endOfDay, [TransactionType.DailyExpence]);
     return getRoundedNumber(total);
 }
 

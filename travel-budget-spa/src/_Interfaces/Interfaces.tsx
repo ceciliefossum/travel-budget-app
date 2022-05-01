@@ -1,5 +1,5 @@
 import { User } from "firebase/auth";
-import { BalanceType, TransactionCategory, TransactionType } from "./Enums";
+import { BalanceType, TransactionType } from "./Enums";
 
 export interface IBalance {
     amount: number,
@@ -10,7 +10,6 @@ export interface ITransaction {
     type: TransactionType,
     amount: number,
     valuta: string,
-    category: TransactionCategory,
     date: Date,
 }
 
@@ -35,4 +34,10 @@ export interface IUserState {
     user: User | null,
     isLoading: boolean,
     error: string | null,
+}
+
+export interface ITransactionTypeChoice {
+    text: string,
+    icon: JSX.Element,
+    transactionType: TransactionType,
 }
