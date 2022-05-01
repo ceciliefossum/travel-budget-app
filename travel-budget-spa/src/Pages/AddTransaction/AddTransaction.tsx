@@ -1,5 +1,5 @@
 import React, { useState } from "react"; 
-import { collection, addDoc } from "firebase/firestore"
+import { collection, writeBatch, doc } from "firebase/firestore"
 import { useNavigate } from "react-router-dom";
 import Button from "../../shared/Button";
 import styles from "../../shared/Button.module.css";
@@ -10,13 +10,15 @@ import { TransactionType } from "../../_interfaces/Enums";
 import { db } from "../../firebaseSetup";
 import Loading from "../../shared/Loading";
 import { databaseCollectionNames, transactionTypeChoices } from "../../_constants/Constants";
-import { ITransactionTypeChoice } from "../../_interfaces/Interfaces";
+import { ITransaction, ITransactionTypeChoice } from "../../_interfaces/Interfaces";
+import { getRoundedNumber } from "../../_helpers/utilities";
 
 const AddTransaction = () => {
     const navigate = useNavigate();
-    const [transactionType, setTransactionType] = useState<TransactionType | undefined>(undefined)
+    const [transactionType, setTransactionType] = useState<TransactionType>()
     const [amount, setAmount] = useState<number>(0);
     const [valuta, setValuta] = useState<string>('NOK');
+    const [numberOfDays, setNumberOfDays] = useState<number>(1);
     const [loadingText, setLoadingText] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
 
@@ -26,12 +28,36 @@ const AddTransaction = () => {
         setTransactionType(undefined);
     }
 
+    const getTransactions = (): ITransaction[] | null => {
+        if (transactionType && amount && valuta && numberOfDays > 0) {
+            const amountDivided = getRoundedNumber(amount / numberOfDays);
+            return Array.from(Array(numberOfDays)).map((value, index: number) => {
+                const date = new Date();
+                date.setDate(date.getDate() - 1);
+                date.setDate(date.getDate() + index);
+                return {
+                    type: transactionType,
+                    amount: transactionType === TransactionType.Income ? amountDivided : -amountDivided,
+                    valuta,
+                    date
+                }
+            });
+        } else {
+            return null;
+        }
+    }
+
     const addTransactionHandler = async () => {
         try {
-            const data = { type: transactionType, amount: transactionType === TransactionType.Income ? amount : -amount, valuta, date: new Date() };
-            if (data.amount && data.valuta) {
+            const transactions = getTransactions();
+            if (!!transactions) {
                 setLoadingText('Adding transaction...');
-                await addDoc(collection(db, databaseCollectionNames.transactions), data);
+                const batch = writeBatch(db);
+                transactions.forEach((transaction: ITransaction) => {
+                    const docRef = doc(collection(db, databaseCollectionNames.transactions))
+                    batch.set(docRef, transaction);
+                });
+                await batch.commit();
                 setInitialValues();
             } else {
                 throw new Error('All fields must have a value');
@@ -70,7 +96,7 @@ const AddTransaction = () => {
                                 className="amount-input"
                                 aria-label="amount"
                                 type="number"
-                                placeholder="0"
+                                placeholder="Amount"
                                 value={amount || ''}
                                 onChange={(event) => setAmount(Number(event.target.value))}
                             />
@@ -83,6 +109,14 @@ const AddTransaction = () => {
                                 <option value="DKK">DKK</option>
                                 <option value="EUR">EUR</option>
                             </select>
+                            <input
+                                className="amount-input"
+                                aria-label="number of days"
+                                type="number"
+                                placeholder="Expence for 1 day"
+                                value={numberOfDays === 1 ? '' : numberOfDays}
+                                onChange={(event) => setNumberOfDays(Number(event.target.value))}
+                            />
                             <Button
                                 text="Add"
                                 icon={<PlusIcon />}

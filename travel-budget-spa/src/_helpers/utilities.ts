@@ -5,7 +5,12 @@ const getBudget = (total: number, fromDate: Date, untilDate: Date): number => {
     return total / (getDayDifference(fromDate, untilDate) + 1);
 };
 
-const getRoundedNumber = (number: number): number => {
+/**
+ * Returns the number up/ down to a whole number
+ * @param {number} number 
+ * @returns The number rounded up/ down to a whole number
+ */
+export const getRoundedNumber = (number: number): number => {
     return Number(number.toFixed());
 }
 
