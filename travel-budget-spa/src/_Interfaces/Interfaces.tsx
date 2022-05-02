@@ -26,6 +26,11 @@ export interface IBudgetPeriod {
 	endDate: Date;
 }
 
+export interface IBudgetPeriodDB {
+	startDate: Timestamp;
+	endDate: Timestamp;
+}
+
 export interface IRoute {
 	path: string;
 	title: string;

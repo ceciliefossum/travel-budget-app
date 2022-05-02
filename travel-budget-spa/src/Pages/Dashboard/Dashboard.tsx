@@ -1,11 +1,14 @@
 import Transaction from '../../shared/Transaction';
 import './Dashboard.css';
-import { databaseCollectionNames } from '../../_constants/Constants';
 import Balance from '../../shared/Balance';
-import { IBudgetPeriod, ITransaction, ITransactionDB } from '../../_interfaces/Interfaces';
+import {
+	IBudgetPeriod,
+	IBudgetPeriodDB,
+	ITransaction,
+	ITransactionDB
+} from '../../_interfaces/Interfaces';
 import { BalanceType } from '../../_interfaces/Enums';
 import {
-	collection,
 	getDocs,
 	onSnapshot,
 	query,
@@ -15,7 +18,7 @@ import {
 	where
 } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
-import { db, transactionsCollection } from '../../firebaseSetup';
+import { budgetPeriodCollection, transactionsCollection } from '../../firebaseSetup';
 import Loading from '../../shared/Loading';
 import {
 	getAccountBalance,
@@ -34,12 +37,10 @@ const Dashboard = () => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 
 	const getLatestBudgetPeriod = async () => {
-		const budgetPeriodRef = collection(db, databaseCollectionNames.budgetPeriods);
-		const q = query(budgetPeriodRef, where('endDate', '>', new Date()));
-
-		const querySnapshot = await getDocs(q);
-		querySnapshot.forEach((doc) => {
-			const budgetPeriodTemp: { endDate: Date, startDate: Date } = {
+		const q = query(budgetPeriodCollection, where('endDate', '>', new Date()));
+		const querySnapshot: QuerySnapshot<IBudgetPeriodDB> = await getDocs(q);
+		querySnapshot.forEach((doc: QueryDocumentSnapshot<IBudgetPeriodDB>) => {
+			const budgetPeriodTemp: IBudgetPeriod = {
 				startDate: doc.data().startDate.toDate(),
 				endDate: doc.data().endDate.toDate()
 			};
