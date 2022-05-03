@@ -1,7 +1,7 @@
 import Budget from '../pages/Budget/Budget';
 import Dashboard from '../pages/Dashboard/Dashboard';
 import AddTransaction from '../pages/AddTransaction/AddTransaction';
-import { IRoute } from '../_interfaces/Interfaces';
+import { IRoute } from '../_interfaces/interfaces';
 import SignIn from '../pages/SignIn/SignIn';
 
 export const appRoutePaths = {

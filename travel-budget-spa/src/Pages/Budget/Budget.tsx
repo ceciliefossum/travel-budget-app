@@ -2,13 +2,13 @@ import { addDoc, collection } from 'firebase/firestore';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../../firebaseSetup';
-import Button from '../../shared/Button';
-import styles from '../../shared/Button.module.css';
-import CalendarPlusIcon from '../../shared/Icons/CalendarPlusIcon';
-import PointRightIcon from '../../shared/Icons/PointRightIcon';
-import Loading from '../../shared/Loading';
-import { databaseCollectionNames } from '../../_constants/Constants';
-import { appRoutePaths } from '../../_constants/Routes';
+import Button from '../../components/Button';
+import styles from '../../components/Button.module.css';
+import CalendarPlusIcon from '../../components/Icons/CalendarPlusIcon';
+import PointRightIcon from '../../components/Icons/PointRightIcon';
+import Loading from '../../components/Loading';
+import { databaseCollectionNames } from '../../_constants/constants';
+import { appRoutePaths } from '../../_constants/routes';
 import './Budget.css';
 
 const Budget = () => {
@@ -41,20 +41,13 @@ const Budget = () => {
 					endDate: new Date(endDate)
 				};
 				setLoadingText('Adding budget period...');
-				await addDoc(
-					collection(db, databaseCollectionNames.budgetPeriods),
-					data
-				);
+				await addDoc(collection(db, databaseCollectionNames.budgetPeriods), data);
 				navigate(appRoutePaths.home);
 			} else {
 				throw new Error('End date must be set');
 			}
 		} catch ({ message }) {
-			setError(
-				typeof message === 'string'
-					? message
-					: 'Sorry! Something went wrong.'
-			);
+			setError(typeof message === 'string' ? message : 'Sorry! Something went wrong.');
 		} finally {
 			setLoadingText(null);
 		}
@@ -73,9 +66,7 @@ const Budget = () => {
 							<Button
 								text="Add period"
 								icon={<CalendarPlusIcon />}
-								className={
-									styles['text-icon-primary-big-button']
-								}
+								className={styles['text-icon-primary-big-button']}
 								onClick={() => setStartDay(toDayString)}
 							/>
 						</React.Fragment>
@@ -86,9 +77,7 @@ const Budget = () => {
 							<input
 								type="date"
 								value={endDate}
-								onChange={(event) =>
-									setEndDate(event.target.value)
-								}
+								onChange={(event) => setEndDate(event.target.value)}
 							/>
 							<Button
 								text="Start period"

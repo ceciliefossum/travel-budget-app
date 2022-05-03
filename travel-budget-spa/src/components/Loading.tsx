@@ -1,4 +1,4 @@
-import { LoadingProps } from '../_interfaces/Props';
+import { LoadingProps } from '../_interfaces/props';
 import './Loading.css';
 
 const Loading = (props: LoadingProps) => (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { User } from 'firebase/auth';
 import { auth } from '../firebaseSetup';
-import { IUserState } from '../_interfaces/Interfaces';
+import { IUserState } from '../_interfaces/interfaces';
 
 const initiaUserState = {
 	user: auth.currentUser,

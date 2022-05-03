@@ -1,5 +1,5 @@
 import './Transaction.css';
-import { ITransaction } from '../_interfaces/Interfaces';
+import { ITransaction } from '../_interfaces/interfaces';
 
 const Transaction = (props: { transaction: ITransaction }) => (
 	<div className="transaction-container">

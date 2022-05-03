@@ -1,8 +1,8 @@
-import DollarSackIcon from '../shared/Icons/DollarSackIcon';
-import FuelIcon from '../shared/Icons/FuelIcon';
-import ShoppingBasketIcon from '../shared/Icons/ShoppingBasketIcon';
-import { TransactionType } from '../_interfaces/Enums';
-import { ITransactionTypeChoice } from '../_interfaces/Interfaces';
+import DollarSackIcon from '../components/Icons/DollarSackIcon';
+import FuelIcon from '../components/Icons/FuelIcon';
+import ShoppingBasketIcon from '../components/Icons/ShoppingBasketIcon';
+import { TransactionType } from '../_interfaces/enums';
+import { ITransactionTypeChoice } from '../_interfaces/interfaces';
 
 export const databaseCollectionNames = {
 	transactions: 'transactions',

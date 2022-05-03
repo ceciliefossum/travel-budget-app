@@ -1,13 +1,13 @@
-import Transaction from '../../shared/Transaction';
+import Transaction from '../../components/Transaction';
 import './Dashboard.css';
-import Balance from '../../shared/Balance';
+import Balance from '../../components/Balance';
 import {
 	IBudgetPeriod,
 	IBudgetPeriodDB,
 	ITransaction,
 	ITransactionDB
-} from '../../_interfaces/Interfaces';
-import { BalanceType } from '../../_interfaces/Enums';
+} from '../../_interfaces/interfaces';
+import { BalanceType } from '../../_interfaces/enums';
 import {
 	getDocs,
 	onSnapshot,
@@ -19,13 +19,13 @@ import {
 } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { budgetPeriodCollection, transactionsCollection } from '../../firebaseSetup';
-import Loading from '../../shared/Loading';
+import Loading from '../../components/Loading';
 import {
 	getAccountBalance,
 	getDailyBudget,
 	getDayDifference,
 	getTodaysBalance
-} from '../../_helpers/utilities';
+} from '../../helpers/utilities';
 
 const Dashboard = () => {
 	const [budgetPeriod, setBudgetPeriod] = useState<IBudgetPeriod>();

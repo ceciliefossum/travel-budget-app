@@ -1,5 +1,5 @@
-import { TransactionType } from '../_interfaces/Enums';
-import { IBudgetPeriod, ITransaction } from '../_interfaces/Interfaces';
+import { TransactionType } from '../_interfaces/enums';
+import { IBudgetPeriod, ITransaction } from '../_interfaces/interfaces';
 
 const getBudget = (total: number, fromDate: Date, untilDate: Date): number => {
 	return total / (getDayDifference(fromDate, untilDate) + 1);

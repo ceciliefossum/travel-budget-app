@@ -1,7 +1,7 @@
 import { signInWithRedirect, GoogleAuthProvider } from 'firebase/auth';
-import Button from '../../shared/Button';
-import GoogleIcon from '../../shared/Icons/GoogleIcon';
-import styles from '../../shared/Button.module.css';
+import Button from '../../components/Button';
+import GoogleIcon from '../../components/Icons/GoogleIcon';
+import styles from '../../components/Button.module.css';
 import './SignIn.css';
 import { auth } from '../../firebaseSetup';
 

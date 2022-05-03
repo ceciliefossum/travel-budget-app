@@ -1,6 +1,6 @@
 import { User } from 'firebase/auth';
 import { Timestamp } from 'firebase/firestore';
-import { BalanceType, TransactionType } from './Enums';
+import { BalanceType, TransactionType } from './enums';
 
 export interface IBalance {
 	amount: number;

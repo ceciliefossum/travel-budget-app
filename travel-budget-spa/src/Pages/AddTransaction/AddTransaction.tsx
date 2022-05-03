@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { collection, writeBatch, doc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import Button from '../../shared/Button';
-import styles from '../../shared/Button.module.css';
+import Button from '../../components/Button';
+import styles from '../../components/Button.module.css';
 import './AddTransaction.css';
-import PlusIcon from '../../shared/Icons/PlusIcon';
-import CancelIcon from '../../shared/Icons/CancelIcon';
-import { TransactionType } from '../../_interfaces/Enums';
+import PlusIcon from '../../components/Icons/PlusIcon';
+import CancelIcon from '../../components/Icons/CancelIcon';
+import { TransactionType } from '../../_interfaces/enums';
 import { db } from '../../firebaseSetup';
-import Loading from '../../shared/Loading';
-import { databaseCollectionNames, transactionTypeChoices } from '../../_constants/Constants';
-import { ITransaction, ITransactionTypeChoice } from '../../_interfaces/Interfaces';
-import { getRoundedNumber } from '../../_helpers/utilities';
+import Loading from '../../components/Loading';
+import { databaseCollectionNames, transactionTypeChoices } from '../../_constants/constants';
+import { ITransaction, ITransactionTypeChoice } from '../../_interfaces/interfaces';
+import { getRoundedNumber } from '../../helpers/utilities';
 
 const AddTransaction = () => {
 	const navigate = useNavigate();
