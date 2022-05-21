@@ -33,7 +33,6 @@ const AddTransaction = () => {
 			const amountDivided = getRoundedNumber(amount / numberOfDays);
 			return Array.from(Array(numberOfDays)).map((value, index: number) => {
 				const date = new Date();
-				date.setDate(date.getDate() - 1);
 				date.setDate(date.getDate() + index);
 				return {
 					type: transactionType,
