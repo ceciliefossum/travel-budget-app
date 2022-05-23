@@ -5,8 +5,7 @@ import { IUserState } from '../_interfaces/interfaces';
 import useFirestore from '../hooks/use-firestore';
 
 const initiaUserState: IUserState = {
-	user: auth.currentUser,
-	userData: null,
+	user: auth.currentUser ? { ...auth.currentUser, accountId: null } : null,
 	isLoading: auth.currentUser ? false : true,
 	error: null
 };
@@ -22,11 +21,14 @@ export const AuthProvider = (props: { children: JSX.Element }) => {
 			if (user) {
 				const userData = await getUserData(user.uid);
 				if (userData) {
-					setUserState({ user, userData, isLoading: false, error: null });
+					setUserState({
+						user: { ...user, accountId: userData.accountId },
+						isLoading: false,
+						error: null
+					});
 				} else {
 					setUserState({
-						user,
-						userData: null,
+						user: null,
 						isLoading: false,
 						error: 'No account found.'
 					});
@@ -37,7 +39,6 @@ export const AuthProvider = (props: { children: JSX.Element }) => {
 		const onError = () => {
 			setUserState({
 				user: null,
-				userData: null,
 				isLoading: false,
 				error: 'Authentication failed.'
 			});

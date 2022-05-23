@@ -9,10 +9,8 @@ import useBalance from '../../hooks/use-balance';
 import BalanceSummary from '../../components/BalanceSummary';
 
 const Dashboard = () => {
-	const { userData } = useContext(AuthContext);
-	const { budgetPeriod, loadingMessage, errorMessage } = useBudgetPeriod(
-		userData?.accountId ?? null
-	);
+	const { user } = useContext(AuthContext);
+	const { budgetPeriod, loadingMessage, errorMessage } = useBudgetPeriod(user?.accountId ?? null);
 	const { transactions } = useTransactions(budgetPeriod?.id ?? null);
 	const { balanceSummary } = useBalance(transactions, budgetPeriod);
 

@@ -20,10 +20,8 @@ const AddTransaction = () => {
 	const [valuta, setValuta] = useState<string>('NOK');
 	const [numberOfDays, setNumberOfDays] = useState<number>(1);
 
-	const { userData } = useContext(AuthContext);
-	const { budgetPeriod, loadingMessage, errorMessage } = useBudgetPeriod(
-		userData?.accountId ?? null
-	);
+	const { user } = useContext(AuthContext);
+	const { budgetPeriod, loadingMessage, errorMessage } = useBudgetPeriod(user?.accountId ?? null);
 	const { addTransactions } = useTransactions(budgetPeriod?.id ?? null);
 
 	const setInitialValues = () => {
@@ -41,7 +39,7 @@ const AddTransaction = () => {
 			numberOfDays,
 			transactionType,
 			valuta,
-			userData?.accountId ?? null,
+			user?.accountId ?? null,
 			budgetPeriod?.id ?? null,
 			successHandler
 		);

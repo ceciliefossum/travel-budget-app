@@ -17,10 +17,10 @@ const Budget = () => {
 	const [startBudget, setStartBudget] = useState<boolean>(false);
 
 	const { loadingMessage, errorMessage, addBudgetPeriod } = useFirestore();
-	const { userData } = useContext(AuthContext);
+	const { user } = useContext(AuthContext);
 
 	const addBudgetPeriodnHandler = async () => {
-		addBudgetPeriod(userData?.accountId ?? null, endDate, () => {
+		addBudgetPeriod(user?.accountId ?? null, endDate, () => {
 			navigate(appRoutePaths.home);
 		});
 	};

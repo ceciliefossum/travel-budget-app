@@ -25,7 +25,7 @@ const App = () => {
 				<React.Fragment>
 					<div className="main-content-container">
 						<Routes>
-							{!!userState.user && userState.userData && (
+							{!!userState.user && (
 								<React.Fragment>
 									<Route path={appRoutePaths.home} element={<Dashboard />} />
 									<Route

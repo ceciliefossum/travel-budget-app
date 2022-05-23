@@ -23,7 +23,7 @@ import {
 	IBudgetPeriodDB,
 	ITransaction,
 	ITransactionDB,
-	IUserData
+	IUserDB
 } from '../_interfaces/interfaces';
 
 const useFirestore = () => {
@@ -35,7 +35,7 @@ const useFirestore = () => {
 	const transactionsCol = getCollection<ITransactionDB>(db, dbCollectionNames.transactions);
 	const budgetPeriodCol = getCollection<IBudgetPeriodDB>(db, dbCollectionNames.budgetPeriods);
 	const accountsCol = getCollection<IAccount>(db, dbCollectionNames.accounts);
-	const usersCol = getCollection<IUserData>(db, dbCollectionNames.users);
+	const usersCol = getCollection<IUserDB>(db, dbCollectionNames.users);
 
 	const setErrorMessageHandler = (message: string | unknown): void => {
 		setErrorMessage(typeof message === 'string' ? message : 'Something went wrong');
@@ -46,7 +46,7 @@ const useFirestore = () => {
 	 * @param userId ID of user
 	 * @returns User
 	 */
-	const getUserData = async (userId: string): Promise<IUserData | undefined> => {
+	const getUserData = async (userId: string): Promise<IUserDB | undefined> => {
 		const userDocRef = doc(usersCol, userId);
 		const userDocSnap = await getDoc(userDocRef);
 		return userDocSnap.data();

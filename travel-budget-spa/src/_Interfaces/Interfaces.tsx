@@ -52,13 +52,14 @@ export interface IMenyItem extends IRoute {
 	buttonStyle: string;
 }
 
-export interface IUserData {
-	accountId: string;
+export interface IUserDB {
+	accountId: string | null;
 }
 
+export interface IUser extends User, IUserDB {}
+
 export interface IUserState {
-	user: User | null;
-	userData: IUserData | null;
+	user: IUser | null;
 	isLoading: boolean;
 	error: string | null;
 }
