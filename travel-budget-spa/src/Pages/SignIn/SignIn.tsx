@@ -3,7 +3,7 @@ import Button from '../../components/Button';
 import GoogleIcon from '../../components/Icons/GoogleIcon';
 import styles from '../../components/Button.module.css';
 import './SignIn.css';
-import { auth } from '../../firebaseSetup';
+import { auth } from '../../helpers/firebase';
 
 const SignIn = () => {
 	const provider = new GoogleAuthProvider();

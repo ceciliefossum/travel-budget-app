@@ -4,9 +4,11 @@ import ShoppingBasketIcon from '../components/Icons/ShoppingBasketIcon';
 import { TransactionType } from '../_interfaces/enums';
 import { ITransactionTypeChoice } from '../_interfaces/interfaces';
 
-export const databaseCollectionNames = {
+export const dbCollectionNames = {
 	transactions: 'transactions',
-	budgetPeriods: 'budget-periods'
+	budgetPeriods: 'budget-periods',
+	accounts: 'accounts',
+	users: 'users'
 };
 
 export const transactionTypeChoices: ITransactionTypeChoice[] = [

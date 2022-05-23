@@ -3,9 +3,13 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Loading from './components/Loading';
 import Navbar from './components/Navbar';
-import { appRoutePaths, appRoutes } from './_constants/routes';
-import { IRoute } from './_interfaces/interfaces';
+import { appRoutePaths } from './_constants/routes';
 import { AuthContext } from './store/AuthContext';
+import useBudgetPeriod from './hooks/use-budget-period';
+import Dashboard from './pages/Dashboard/Dashboard';
+import AddTransaction from './pages/AddTransaction/AddTransaction';
+import Budget from './pages/Budget/Budget';
+import SignIn from './pages/SignIn/SignIn';
 
 const App = () => {
 	const userState = useContext(AuthContext);
@@ -16,20 +20,22 @@ const App = () => {
 				<h1>TravelBudget</h1>
 			</header>
 			{userState.isLoading && <Loading text={'Checking sign in status...'} />}
-			{!userState.isLoading && (
+			{!userState.isLoading && userState.error && <p>{userState.error}</p>}
+			{!userState.isLoading && !userState.error && (
 				<React.Fragment>
 					<div className="main-content-container">
 						<Routes>
-							{appRoutes.map(
-								(route: IRoute) =>
-									route.isProtected === !!userState.user && (
-										<Route
-											key={route.path}
-											path={route.path}
-											element={route.element}
-										/>
-									)
+							{!!userState.user && userState.userData && (
+								<React.Fragment>
+									<Route path={appRoutePaths.home} element={<Dashboard />} />
+									<Route
+										path={appRoutePaths.addStatement}
+										element={<AddTransaction />}
+									/>
+									<Route path={appRoutePaths.budget} element={<Budget />} />
+								</React.Fragment>
 							)}
+							<Route path={appRoutePaths.signIn} element={<SignIn />} />
 							<Route
 								path="*"
 								element={

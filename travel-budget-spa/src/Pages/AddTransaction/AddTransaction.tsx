@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { collection, writeBatch, doc } from 'firebase/firestore';
+import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import styles from '../../components/Button.module.css';
@@ -7,11 +6,12 @@ import './AddTransaction.css';
 import PlusIcon from '../../components/Icons/PlusIcon';
 import CancelIcon from '../../components/Icons/CancelIcon';
 import { TransactionType } from '../../_interfaces/enums';
-import { db } from '../../firebaseSetup';
 import Loading from '../../components/Loading';
-import { databaseCollectionNames, transactionTypeChoices } from '../../_constants/constants';
-import { ITransaction, ITransactionTypeChoice } from '../../_interfaces/interfaces';
-import { getRoundedNumber } from '../../helpers/utilities';
+import { transactionTypeChoices } from '../../_constants/constants';
+import { ITransactionTypeChoice } from '../../_interfaces/interfaces';
+import { AuthContext } from '../../store/AuthContext';
+import useTransactions from '../../hooks/use-transactions';
+import useBudgetPeriod from '../../hooks/use-budget-period';
 
 const AddTransaction = () => {
 	const navigate = useNavigate();
@@ -19,60 +19,38 @@ const AddTransaction = () => {
 	const [amount, setAmount] = useState<number>(0);
 	const [valuta, setValuta] = useState<string>('NOK');
 	const [numberOfDays, setNumberOfDays] = useState<number>(1);
-	const [loadingText, setLoadingText] = useState<string | null>(null);
-	const [error, setError] = useState<string | null>(null);
+
+	const { userData } = useContext(AuthContext);
+	const { budgetPeriod, loadingMessage, errorMessage } = useBudgetPeriod(
+		userData?.accountId ?? null
+	);
+	const { addTransactions } = useTransactions(budgetPeriod?.id ?? null);
 
 	const setInitialValues = () => {
-		setError(null);
 		setAmount(0);
 		setTransactionType(undefined);
 	};
 
-	const getTransactions = (): ITransaction[] | null => {
-		if (transactionType && amount && valuta && numberOfDays > 0) {
-			const amountDivided = getRoundedNumber(amount / numberOfDays);
-			return Array.from(Array(numberOfDays)).map((value, index: number) => {
-				const date = new Date();
-				date.setDate(date.getDate() + index);
-				return {
-					type: transactionType,
-					amount:
-						transactionType === TransactionType.Income ? amountDivided : -amountDivided,
-					valuta,
-					date
-				};
-			});
-		} else {
-			return null;
-		}
+	const successHandler = () => {
+		setInitialValues();
 	};
 
-	const addTransactionHandler = async () => {
-		try {
-			const transactions = getTransactions();
-			if (transactions) {
-				setLoadingText('Adding transaction...');
-				const batch = writeBatch(db);
-				transactions.forEach((transaction: ITransaction) => {
-					const docRef = doc(collection(db, databaseCollectionNames.transactions));
-					batch.set(docRef, transaction);
-				});
-				await batch.commit();
-				setInitialValues();
-			} else {
-				throw new Error('All fields must have a value');
-			}
-		} catch ({ message }) {
-			setError(typeof message === 'string' ? message : 'Sorry! Something went wrong.');
-		} finally {
-			setLoadingText(null);
-		}
+	const addTransactionHandler = () => {
+		addTransactions(
+			amount,
+			numberOfDays,
+			transactionType,
+			valuta,
+			userData?.accountId ?? null,
+			budgetPeriod?.id ?? null,
+			successHandler
+		);
 	};
 
 	return (
 		<React.Fragment>
-			{!!loadingText && <Loading text={loadingText} />}
-			{!loadingText && (
+			{!!loadingMessage && <Loading text={loadingMessage} />}
+			{!loadingMessage && (
 				<div className="add-transaction-container">
 					{!transactionType && (
 						<React.Fragment>
@@ -130,7 +108,7 @@ const AddTransaction = () => {
 						className={styles['text-icon-danger-button']}
 						onClick={() => navigate(-1)}
 					/>
-					{!!error && <p className="error-message">{error}</p>}
+					{!!errorMessage && <p className="error-message">{errorMessage}</p>}
 				</div>
 			)}
 		</React.Fragment>

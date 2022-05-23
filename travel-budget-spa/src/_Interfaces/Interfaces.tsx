@@ -8,25 +8,35 @@ export interface IBalance {
 }
 
 export interface ITransaction {
+	id?: string;
 	type: TransactionType;
 	amount: number;
 	valuta: string;
 	date: Date;
+	accountId: string;
+	budgetPeriodId: string;
 }
 
 export interface ITransactionDB {
+	id: string;
 	type: TransactionType;
 	amount: number;
 	valuta: string;
 	date: Timestamp;
+	accountId: string;
+	budgetPeriodId: string;
 }
 
 export interface IBudgetPeriod {
+	id: string;
+	accountId: string;
 	startDate: Date;
 	endDate: Date;
 }
 
 export interface IBudgetPeriodDB {
+	id: string;
+	accountId: string;
 	startDate: Timestamp;
 	endDate: Timestamp;
 }
@@ -34,7 +44,6 @@ export interface IBudgetPeriodDB {
 export interface IRoute {
 	path: string;
 	title: string;
-	element: JSX.Element;
 	isProtected: boolean;
 }
 
@@ -43,8 +52,13 @@ export interface IMenyItem extends IRoute {
 	buttonStyle: string;
 }
 
+export interface IUserData {
+	accountId: string;
+}
+
 export interface IUserState {
 	user: User | null;
+	userData: IUserData | null;
 	isLoading: boolean;
 	error: string | null;
 }
@@ -53,4 +67,15 @@ export interface ITransactionTypeChoice {
 	text: string;
 	icon: JSX.Element;
 	transactionType: TransactionType;
+}
+
+export interface IAccount {
+	currentBudgetPeriodId: string;
+}
+
+export interface IBalanceSummary {
+	dailyBudget: number;
+	todaysBalance: number;
+	accountBalance: number;
+	daysLeft: number;
 }
