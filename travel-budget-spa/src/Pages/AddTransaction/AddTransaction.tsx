@@ -12,6 +12,7 @@ import { ITransactionTypeChoice } from '../../_interfaces/interfaces';
 import { AuthContext } from '../../store/AuthContext';
 import useTransactions from '../../hooks/use-transactions';
 import useBudgetPeriod from '../../hooks/use-budget-period';
+import NoBudgetPeriod from '../../components/NoBudgetPeriod';
 
 const AddTransaction = () => {
 	const navigate = useNavigate();
@@ -48,7 +49,7 @@ const AddTransaction = () => {
 	return (
 		<React.Fragment>
 			{!!loadingMessage && <Loading text={loadingMessage} />}
-			{!loadingMessage && !budgetPeriod && <p>No budget period found. Please Add one.</p>}
+			{!loadingMessage && !budgetPeriod && <NoBudgetPeriod />}
 			{!loadingMessage && budgetPeriod && (
 				<div className="add-transaction-container">
 					{!transactionType && (

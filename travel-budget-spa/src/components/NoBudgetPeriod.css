@@ -1,0 +1,19 @@
+.no-budget-period-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 30px;
+}
+
+.no-budget-period-container svg {
+	height: 80px;
+	width: 80px;
+	fill: var(--tertiary-text-color);
+	margin-bottom: 20px;
+}
+
+.no-budget-period-container p {
+	text-align: center;
+	font-style: italic;
+	color: var(--tertiary-text-color);
+}

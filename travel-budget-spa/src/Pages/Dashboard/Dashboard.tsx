@@ -10,6 +10,7 @@ import BalanceSummary from '../../components/BalanceSummary';
 import CurrentBudget from '../../components/CurrentBudget';
 import User from '../../components/User';
 import { auth } from '../../helpers/firebase';
+import NoBudgetPeriod from '../../components/NoBudgetPeriod';
 
 const Dashboard = () => {
 	const { user } = useContext(AuthContext);
@@ -25,7 +26,12 @@ const Dashboard = () => {
 		<div className="dashboard-container">
 			{!!loadingMessage && <Loading text={loadingMessage} />}
 			{!loadingMessage && !!errorMessage && <p className="error-message">{errorMessage}</p>}
-			{!loadingMessage && !budgetPeriod && <p>No budget period. Please add one.</p>}
+			{!loadingMessage && !!user && !budgetPeriod && (
+				<React.Fragment>
+					<NoBudgetPeriod />
+					<User user={user} onSignOut={signOutHandler} />
+				</React.Fragment>
+			)}
 			{!loadingMessage && !!user && !!budgetPeriod && !errorMessage && (
 				<React.Fragment>
 					<BalanceSummary balanceSummary={balanceSummary} />
