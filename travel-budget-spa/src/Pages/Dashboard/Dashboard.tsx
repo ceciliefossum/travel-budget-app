@@ -16,10 +16,10 @@ const Dashboard = () => {
 
 	return (
 		<div className="dashboard-container">
-			{!!errorMessage && <p className="error-message">{errorMessage}</p>}
 			{!!loadingMessage && <Loading text={loadingMessage} />}
+			{!loadingMessage && !!errorMessage && <p className="error-message">{errorMessage}</p>}
 			{!loadingMessage && !budgetPeriod && <p>No budget period. Please add one.</p>}
-			{!loadingMessage && (
+			{!loadingMessage && !errorMessage && (
 				<React.Fragment>
 					<BalanceSummary balanceSummary={balanceSummary} />
 					{!!transactions && <Transactions transactions={transactions} />}

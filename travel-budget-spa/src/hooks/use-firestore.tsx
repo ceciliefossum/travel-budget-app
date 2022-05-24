@@ -10,7 +10,8 @@ import {
 	query,
 	QueryDocumentSnapshot,
 	QuerySnapshot,
-	setDoc,
+	runTransaction,
+	Transaction,
 	Unsubscribe,
 	where,
 	writeBatch
@@ -149,6 +150,14 @@ const useFirestore = () => {
 		}
 	};
 
+	/**
+	 * Adds a new budget period from todays date, until and inclusive an end date.
+	 * The new budget period will be set as the current budget period for the given account id.
+	 * If adding the new budget period or adding new current budget period to account fails, all updates will fail.
+	 * @param accountId the account the budget period is related to
+	 * @param endDate end date for budget period (included in budget period)
+	 * @param successHandler function to run on successful completion
+	 */
 	const addBudgetPeriod = async (
 		accountId: string | null,
 		endDate: string | null,
@@ -162,20 +171,30 @@ const useFirestore = () => {
 				new Date(endDate).getTime() > new Date().getTime()
 			) {
 				setLoadingMessage('Adding budget period...');
-				const data = {
+				const budgetPeriod = {
 					accountId,
 					startDate: new Date(),
 					endDate: new Date(endDate)
 				};
-				const budgetPeriodDocRef = doc(collection(db, dbCollectionNames.budgetPeriods));
-				await setDoc(budgetPeriodDocRef, { ...data, id: budgetPeriodDocRef.id });
 
-				const accountDocRef = doc(accountsCol, accountId);
-				await setDoc(
-					accountDocRef,
-					{ currentBudgetPeriodId: budgetPeriodDocRef.id },
-					{ merge: true }
-				);
+				await runTransaction(db, async (transaction: Transaction) => {
+					const accountDocRef = doc(accountsCol, accountId);
+					const accountDoc = await transaction.get(accountDocRef);
+
+					if (!accountDoc.exists()) {
+						throw 'Your account was not found.';
+					}
+
+					const budgetPeriodDocRef = doc(collection(db, dbCollectionNames.budgetPeriods));
+
+					transaction.set(budgetPeriodDocRef, {
+						...budgetPeriod,
+						id: budgetPeriodDocRef.id
+					});
+					transaction.update(accountDocRef, {
+						currentBudgetPeriodId: budgetPeriodDocRef.id
+					});
+				});
 
 				successHandler();
 			} else {

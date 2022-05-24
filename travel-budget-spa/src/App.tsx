@@ -5,7 +5,6 @@ import Loading from './components/Loading';
 import Navbar from './components/Navbar';
 import { appRoutePaths } from './_constants/routes';
 import { AuthContext } from './store/AuthContext';
-import useBudgetPeriod from './hooks/use-budget-period';
 import Dashboard from './pages/Dashboard/Dashboard';
 import AddTransaction from './pages/AddTransaction/AddTransaction';
 import Budget from './pages/Budget/Budget';

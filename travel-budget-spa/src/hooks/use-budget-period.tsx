@@ -4,7 +4,7 @@ import useFirestore from './use-firestore';
 
 const useBudgetPeriod = (accountId: string | null) => {
 	const [budgetPeriod, setBudgetPeriod] = useState<IBudgetPeriod>();
-	const { getBudgetPeriod, loadingMessage, errorMessage } = useFirestore();
+	const { getBudgetPeriod, addBudgetPeriod, loadingMessage, errorMessage } = useFirestore();
 
 	useEffect(() => {
 		if (accountId) {
@@ -27,7 +27,15 @@ const useBudgetPeriod = (accountId: string | null) => {
 		}
 	};
 
-	return { budgetPeriod, loadingMessage, errorMessage };
+	const addNewBudgetPeriod = (
+		accountId: string | null,
+		endDate: string | null,
+		successHandler: () => void
+	) => {
+		addBudgetPeriod(accountId, endDate, successHandler);
+	};
+
+	return { budgetPeriod, addNewBudgetPeriod, loadingMessage, errorMessage };
 };
 
 export default useBudgetPeriod;

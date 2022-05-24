@@ -9,6 +9,7 @@ import { appRoutePaths } from '../../_constants/routes';
 import './Budget.css';
 import useFirestore from '../../hooks/use-firestore';
 import { AuthContext } from '../../store/AuthContext';
+import useBudgetPeriod from '../../hooks/use-budget-period';
 
 const Budget = () => {
 	const navigate = useNavigate();
@@ -16,11 +17,13 @@ const Budget = () => {
 	const [endDate, setEndDate] = useState<string>('-');
 	const [startBudget, setStartBudget] = useState<boolean>(false);
 
-	const { loadingMessage, errorMessage, addBudgetPeriod } = useFirestore();
 	const { user } = useContext(AuthContext);
+	const { loadingMessage, errorMessage, addNewBudgetPeriod } = useBudgetPeriod(
+		user?.accountId ?? null
+	);
 
 	const addBudgetPeriodnHandler = async () => {
-		addBudgetPeriod(user?.accountId ?? null, endDate, () => {
+		addNewBudgetPeriod(user?.accountId ?? null, endDate, () => {
 			navigate(appRoutePaths.home);
 		});
 	};
