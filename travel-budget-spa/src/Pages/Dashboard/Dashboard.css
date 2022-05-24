@@ -1,11 +1,4 @@
 .dashboard-container {
     height: 100%;
-}
-
-.balances-container {
-    display: flex;
-    justify-content: space-around;
     padding: 0 30px;
-    margin: 20px 0;
-    flex-wrap: wrap;
 }

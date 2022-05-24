@@ -33,6 +33,12 @@ export const AuthProvider = (props: { children: JSX.Element }) => {
 						error: 'No account found.'
 					});
 				}
+			} else {
+				setUserState({
+					user: null,
+					isLoading: false,
+					error: null
+				});
 			}
 		};
 

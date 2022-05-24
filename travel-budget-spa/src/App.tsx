@@ -34,7 +34,9 @@ const App = () => {
 									<Route path={appRoutePaths.budget} element={<Budget />} />
 								</React.Fragment>
 							)}
-							<Route path={appRoutePaths.signIn} element={<SignIn />} />
+							{!userState.user && (
+								<Route path={appRoutePaths.signIn} element={<SignIn />} />
+							)}
 							<Route
 								path="*"
 								element={

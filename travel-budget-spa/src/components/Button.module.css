@@ -1,5 +1,6 @@
 /* LAYOUT & SPACING */
 .icon-primary-button,
+.icon-danger-button,
 .icon-success-button,
 .text-icon-primary-big-button,
 .text-icon-success-button,
@@ -14,6 +15,7 @@
 }
 
 .icon-primary-button,
+.icon-danger-button,
 .icon-success-button {
     padding: 8px;
 }
@@ -42,6 +44,7 @@
 
 /* ANIMATION */
 .icon-primary-button:active,
+.icon-danger-button:active,
 .icon-success-button:active,
 .text-icon-success-button:active,
 .text-icon-danger-button:active {
@@ -55,6 +58,11 @@
     border: 1px solid var(--main-text-color);
 }
 
+.icon-danger-button {
+    background-color: var(--danger-color);
+    border: 1px solid var(--danger-color);
+}
+
 .icon-success-button,
 .text-icon-success-button {
     background-color: var(--success-color);
@@ -66,6 +74,7 @@
 }
 
 .icon-primary-button,
+.icon-danger-button,
 .icon-success-button {
     border-radius: 50%;
 }
@@ -79,6 +88,7 @@
 
 /* TEXT */
 .icon-primary-button span,
+.icon-danger-button span,
 .icon-success-button span {
     display: none;
 }
@@ -116,6 +126,7 @@
 
 /* ICON */
 .icon-primary-button svg,
+.icon-danger-button svg,
 .icon-success-button svg,
 .text-icon-success-button svg,
 .text-icon-danger-button svg  {
@@ -124,6 +135,7 @@
 }
 
 .icon-success-button svg,
+.icon-danger-button svg,
 .text-icon-success-button svg {
     fill: var(--main-background-color);
 }

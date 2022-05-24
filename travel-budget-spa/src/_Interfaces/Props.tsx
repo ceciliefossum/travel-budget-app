@@ -1,4 +1,4 @@
-import { IBalanceSummary, IBudgetPeriod, ITransaction } from './interfaces';
+import { IBalanceSummary, IBudgetPeriod, ITransaction, IUser } from './interfaces';
 
 export type ButtonProps = {
 	text: string,
@@ -21,4 +21,9 @@ export type BalanceSummaryProps = {
 
 export type CurrentBudgetProps = {
 	budgetPeriod: IBudgetPeriod
+};
+
+export type UserProps = {
+	user: IUser,
+	onSignOut: () => void
 };
