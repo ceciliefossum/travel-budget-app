@@ -48,7 +48,8 @@ const AddTransaction = () => {
 	return (
 		<React.Fragment>
 			{!!loadingMessage && <Loading text={loadingMessage} />}
-			{!loadingMessage && (
+			{!loadingMessage && !budgetPeriod && <p>No budget period found. Please Add one.</p>}
+			{!loadingMessage && budgetPeriod && (
 				<div className="add-transaction-container">
 					{!transactionType && (
 						<React.Fragment>

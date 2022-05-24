@@ -1,15 +1,16 @@
 import React, { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
-import styles from '../../components/Button.module.css';
 import CalendarPlusIcon from '../../components/Icons/CalendarPlusIcon';
 import PointRightIcon from '../../components/Icons/PointRightIcon';
 import Loading from '../../components/Loading';
 import { appRoutePaths } from '../../_constants/routes';
 import './Budget.css';
-import useFirestore from '../../hooks/use-firestore';
 import { AuthContext } from '../../store/AuthContext';
 import useBudgetPeriod from '../../hooks/use-budget-period';
+import CurrentBudget from '../../components/CurrentBudget';
+import styles from '../../components/Button.module.css';
+import CancelIcon from '../../components/Icons/CancelIcon';
 
 const Budget = () => {
 	const navigate = useNavigate();
@@ -18,9 +19,8 @@ const Budget = () => {
 	const [startBudget, setStartBudget] = useState<boolean>(false);
 
 	const { user } = useContext(AuthContext);
-	const { loadingMessage, errorMessage, addNewBudgetPeriod } = useBudgetPeriod(
-		user?.accountId ?? null
-	);
+	const { loadingMessage, errorMessage, budgetPeriod, addNewBudgetPeriod, endBudgetPeriod } =
+		useBudgetPeriod(user?.accountId ?? null);
 
 	const addBudgetPeriodnHandler = async () => {
 		addNewBudgetPeriod(user?.accountId ?? null, endDate, () => {
@@ -31,7 +31,22 @@ const Budget = () => {
 	return (
 		<React.Fragment>
 			{!!loadingMessage && <Loading text={loadingMessage} />}
-			{!loadingMessage && (
+			{!loadingMessage && budgetPeriod && (
+				<div className="budget-container">
+					<h2>
+						You have an <br /> active budget period
+					</h2>
+					<CurrentBudget budgetPeriod={budgetPeriod} />
+					<Button
+						className={styles['text-icon-danger-button']}
+						text="End budget period"
+						icon={<CancelIcon />}
+						onClick={() => endBudgetPeriod(user?.accountId ?? null)}
+					></Button>
+					{errorMessage && <p className="error-message">{errorMessage}</p>}
+				</div>
+			)}
+			{!loadingMessage && !budgetPeriod && (
 				<div className="budget-container">
 					{!startBudget && (
 						<React.Fragment>

@@ -13,6 +13,7 @@ import {
 	runTransaction,
 	Transaction,
 	Unsubscribe,
+	updateDoc,
 	where,
 	writeBatch
 } from 'firebase/firestore';
@@ -82,6 +83,12 @@ const useFirestore = () => {
 		}
 	};
 
+	/**
+	 * Fetches current budget period assosiated with the given account.
+	 * If the budget period's end date is past, it will return null.
+	 * @param accountId ID for the account the budget period is assosiated with
+	 * @param budgetPeriodHandler function to run on successful completion
+	 */
 	const getBudgetPeriod = async (
 		accountId: string,
 		budgetPeriodHandler: (budgetPeriod: IBudgetPeriodDB | null) => void
@@ -103,7 +110,12 @@ const useFirestore = () => {
 					);
 
 					if (budgetPeriodSnap.exists()) {
-						budgetPeriodHandler(budgetPeriodSnap.data());
+						const budgetPeriod = budgetPeriodSnap.data();
+						if (budgetPeriod.endDate.toDate() < new Date()) {
+							budgetPeriodHandler(null);
+						} else {
+							budgetPeriodHandler(budgetPeriod);
+						}
 					} else {
 						throw new Error('Could not fetch budget period.');
 					}
@@ -207,6 +219,31 @@ const useFirestore = () => {
 		}
 	};
 
+	/**
+	 * Sets the current budget period to undefined for an account.
+	 * @param accountId the id of the account
+	 * @param successHandler function to be run after successful completion
+	 */
+	const removeCurrentBudgetPeriod = async (
+		accountId: string | null,
+		successHandler: () => void
+	) => {
+		try {
+			if (accountId) {
+				setLoadingMessage('Updating account...');
+				const accountDocRef: DocumentReference<IAccount> = doc(accountsCol, accountId);
+				await updateDoc(accountDocRef, { currentBudgetPeriodId: '' });
+				successHandler();
+			} else {
+				throw new Error('Account was not found.');
+			}
+		} catch ({ message }) {
+			setErrorMessageHandler(message);
+		} finally {
+			setLoadingMessage(null);
+		}
+	};
+
 	return {
 		loadingMessage,
 		errorMessage,
@@ -214,7 +251,8 @@ const useFirestore = () => {
 		addTransactionsBatch,
 		getBudgetPeriod,
 		getTransactions,
-		addBudgetPeriod
+		addBudgetPeriod,
+		removeCurrentBudgetPeriod
 	};
 };
 

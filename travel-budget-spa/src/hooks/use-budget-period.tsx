@@ -4,7 +4,13 @@ import useFirestore from './use-firestore';
 
 const useBudgetPeriod = (accountId: string | null) => {
 	const [budgetPeriod, setBudgetPeriod] = useState<IBudgetPeriod>();
-	const { getBudgetPeriod, addBudgetPeriod, loadingMessage, errorMessage } = useFirestore();
+	const {
+		getBudgetPeriod,
+		addBudgetPeriod,
+		removeCurrentBudgetPeriod,
+		loadingMessage,
+		errorMessage
+	} = useFirestore();
 
 	useEffect(() => {
 		if (accountId) {
@@ -27,15 +33,34 @@ const useBudgetPeriod = (accountId: string | null) => {
 		}
 	};
 
+	const endBudgetPeriodSuccessHandler = () => {
+		setBudgetPeriod(undefined);
+	};
+
+	/**
+	 * Adds a new budget period for an account
+	 * @param accountId the id of the account
+	 * @param endDate the end date for the budget period, inclusive
+	 * @param successHandler the function to be run after successful completion
+	 */
 	const addNewBudgetPeriod = (
 		accountId: string | null,
 		endDate: string | null,
 		successHandler: () => void
 	) => {
-		addBudgetPeriod(accountId, endDate, successHandler);
+		const endDateFixed = endDate + 'T23:59:59';
+		addBudgetPeriod(accountId, endDateFixed, successHandler);
 	};
 
-	return { budgetPeriod, addNewBudgetPeriod, loadingMessage, errorMessage };
+	/**
+	 * Ends the current budget period for an account.
+	 * @param accountId the id of the account
+	 */
+	const endBudgetPeriod = (accountId: string | null) => {
+		removeCurrentBudgetPeriod(accountId, endBudgetPeriodSuccessHandler);
+	};
+
+	return { budgetPeriod, addNewBudgetPeriod, endBudgetPeriod, loadingMessage, errorMessage };
 };
 
 export default useBudgetPeriod;

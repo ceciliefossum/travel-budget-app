@@ -1,4 +1,4 @@
-import { IBalanceSummary, ITransaction } from './interfaces';
+import { IBalanceSummary, IBudgetPeriod, ITransaction } from './interfaces';
 
 export type ButtonProps = {
 	text: string,
@@ -17,4 +17,8 @@ export type TransactionsProps = {
 
 export type BalanceSummaryProps = {
 	balanceSummary: IBalanceSummary | undefined
+};
+
+export type CurrentBudgetProps = {
+	budgetPeriod: IBudgetPeriod
 };
