@@ -21,6 +21,8 @@ const Dashboard = () => {
 	const signOutHandler = () => {
 		auth.signOut();
 	};
+	const total = 300;
+	const current = 300;
 
 	return (
 		<div className="dashboard-container">

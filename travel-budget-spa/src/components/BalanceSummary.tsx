@@ -3,16 +3,15 @@ import { BalanceType } from '../_interfaces/enums';
 import { BalanceSummaryProps } from '../_interfaces/props';
 import Balance from './Balance';
 import './BalanceSummary.css';
+import CircleProgressBar from './CircleProgressBar';
 
 const BalanceSummary = ({ balanceSummary }: BalanceSummaryProps) => (
 	<div className="balances-container">
 		{!!balanceSummary && (
 			<React.Fragment>
-				<Balance
-					balance={{
-						amount: balanceSummary.todaysBalance,
-						type: BalanceType.TodaysBalance
-					}}
+				<CircleProgressBar
+					total={balanceSummary.dailyBudget}
+					current={balanceSummary.accountBalance}
 				/>
 				<Balance
 					balance={{

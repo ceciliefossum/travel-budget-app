@@ -6,7 +6,7 @@ import SignOutIcon from './Icons/SignOutIcon';
 
 const User = ({ user, onSignOut }: UserProps) => (
 	<div className="user-container">
-		<img src={user.photoURL ?? ''} alt="User profile image" />
+		<img src={user.photoURL ?? ''} alt="User profile image" referrerPolicy="no-referrer" />
 		<div className="info">
 			<h3>Signed in as</h3>
 			<p>{user.displayName}</p>

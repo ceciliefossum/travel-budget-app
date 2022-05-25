@@ -1,0 +1,65 @@
+.circle-progress-bar-container {
+	width: 100%;
+	border-radius: 50%;
+}
+
+.circle-progress-bar-container .outer-circle {
+	position: relative;
+	height: 180px;
+	width: 180px;
+	margin: auto;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4) inset,
+	1px 1px 10px rgba(0, 0, 0, 0.3),
+	-1px -1px 10px rgba(255, 255, 255, 0.1),
+	-1px -1px 4px rgba(255, 255, 255, 0.2) inset;
+}
+
+.circle-progress-bar-container .inner-circle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.5rem;
+	font-weight: bold;
+	height: 85%;
+	width: 85%;
+	border-radius: 50%;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5),
+		-2px -2px 5px rgba(255, 255, 255, 0.16);
+}
+
+.circle-progress-bar-container svg {
+	position: absolute;
+}
+
+.circle-progress-bar-container svg {
+	width: 180px;
+	height: 180px;
+	transform: rotate(-90deg);
+}
+
+.circle-progress-bar-container circle {
+	height: 100%;
+	width: 100%;
+	stroke-width: 1px;
+	fill: none;
+	stroke-linecap: round;
+	transition: stroke-dashoffset 1s ease-in-out;
+}
+
+.circle-progress-bar-container circle:nth-child(1) {
+	stroke-width: 12px;
+	stroke: var(--success-color);
+}
+
+.circle-progress-bar-container circle:nth-child(2) {
+	stroke: var(--main-text-color);
+	filter: blur(2px);
+}
+
+.circle-progress-bar-container circle.over-budget {
+	stroke: var(--danger-color);
+}

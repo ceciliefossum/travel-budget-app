@@ -27,3 +27,8 @@ export type UserProps = {
 	user: IUser,
 	onSignOut: () => void
 };
+
+export type CircleProgressBarProps = {
+	total: number,
+	current: number
+};
