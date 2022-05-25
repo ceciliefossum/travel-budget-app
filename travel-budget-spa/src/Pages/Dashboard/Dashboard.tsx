@@ -2,7 +2,6 @@ import './Dashboard.css';
 import React, { useContext } from 'react';
 import Loading from '../../components/Loading';
 import { AuthContext } from '../../store/AuthContext';
-import Transactions from '../../components/Transactions';
 import useBudgetPeriod from '../../hooks/use-budget-period';
 import useTransactions from '../../hooks/use-transactions';
 import useBalance from '../../hooks/use-balance';
@@ -11,6 +10,9 @@ import CurrentBudget from '../../components/CurrentBudget';
 import User from '../../components/User';
 import { auth } from '../../helpers/firebase';
 import NoBudgetPeriod from '../../components/NoBudgetPeriod';
+import Button from '../../components/Button';
+import InvoiceIcon from '../../components/Icons/InvoiceIcon';
+import styles from '../../components/Button.module.css';
 
 const Dashboard = () => {
 	const { user } = useContext(AuthContext);
@@ -21,8 +23,6 @@ const Dashboard = () => {
 	const signOutHandler = () => {
 		auth.signOut();
 	};
-	const total = 300;
-	const current = 300;
 
 	return (
 		<div className="dashboard-container">
@@ -30,16 +30,23 @@ const Dashboard = () => {
 			{!loadingMessage && !!errorMessage && <p className="error-message">{errorMessage}</p>}
 			{!loadingMessage && !!user && !budgetPeriod && (
 				<React.Fragment>
-					<NoBudgetPeriod />
 					<User user={user} onSignOut={signOutHandler} />
+					<NoBudgetPeriod />
 				</React.Fragment>
 			)}
 			{!loadingMessage && !!user && !!budgetPeriod && !errorMessage && (
 				<React.Fragment>
-					<BalanceSummary balanceSummary={balanceSummary} />
 					<User user={user} onSignOut={signOutHandler} />
-					<CurrentBudget budgetPeriod={budgetPeriod} />
-					{!!transactions && <Transactions transactions={transactions} />}
+					<BalanceSummary balanceSummary={balanceSummary} />
+					<div className="dashboard-details">
+						<CurrentBudget budgetPeriod={budgetPeriod} />
+						<Button
+							className={styles['text-icon-primary-button']}
+							text="See all transactions"
+							icon={<InvoiceIcon />}
+							onClick={() => null}
+						/>
+					</div>
 				</React.Fragment>
 			)}
 		</div>

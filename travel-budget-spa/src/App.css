@@ -3,20 +3,19 @@
 	overflow: hidden;
 	display: grid;
 	grid-template-rows: auto 1fr auto;
+	background-color: var(--main-background-color);
 }
 
 .app-header {
-	background-color: var(--main-background-color);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	font-size: calc(10px + 2vmin);
-	color: var(--main-text-color);
 }
 
 .app-header h1 {
-	color: var(--success-color);
+	color: var(--primary-color);
 	margin-bottom: 8px;
 }
 

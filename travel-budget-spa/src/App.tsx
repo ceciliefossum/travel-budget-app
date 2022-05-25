@@ -15,7 +15,7 @@ const App = () => {
 
 	return (
 		<div className="app">
-			<header className={`app-header`}>
+			<header className="app-header">
 				<h1>TravelBudget</h1>
 			</header>
 			{userState.isLoading && <Loading text={'Checking sign in status...'} />}

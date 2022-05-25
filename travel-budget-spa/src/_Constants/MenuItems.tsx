@@ -14,9 +14,9 @@ const menuItemIcons = {
 };
 
 const menuItemButtonStyles = {
-	[appRoutePaths.home]: styles['icon-primary-button'],
-	[appRoutePaths.addStatement]: styles['icon-success-button'],
-	[appRoutePaths.budget]: styles['icon-primary-button']
+	[appRoutePaths.home]: styles['icon-secondary-button'],
+	[appRoutePaths.addStatement]: styles['icon-primary-button'],
+	[appRoutePaths.budget]: styles['icon-secondary-button']
 };
 
 export const appMenuItems: IMenyItem[] = appRoutes

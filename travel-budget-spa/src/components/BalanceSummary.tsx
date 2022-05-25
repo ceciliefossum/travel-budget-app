@@ -11,7 +11,7 @@ const BalanceSummary = ({ balanceSummary }: BalanceSummaryProps) => (
 			<React.Fragment>
 				<CircleProgressBar
 					total={balanceSummary.dailyBudget}
-					current={balanceSummary.accountBalance}
+					current={balanceSummary.todaysBalance}
 				/>
 				<Balance
 					balance={{

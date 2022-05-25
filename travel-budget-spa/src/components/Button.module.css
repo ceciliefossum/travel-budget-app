@@ -1,8 +1,10 @@
 /* LAYOUT & SPACING */
 .icon-primary-button,
+.icon-secondary-button,
 .icon-danger-button,
 .icon-success-button,
 .text-icon-primary-big-button,
+.text-icon-primary-button,
 .text-icon-success-button,
 .text-icon-danger-button {
     display: flex;
@@ -15,11 +17,13 @@
 }
 
 .icon-primary-button,
+.icon-secondary-button,
 .icon-danger-button,
 .icon-success-button {
     padding: 8px;
 }
 
+.text-icon-primary-button,
 .text-icon-success-button,
 .text-icon-danger-button {
     padding: 8px 10px;
@@ -29,12 +33,14 @@
     padding: 30px 0;
 }
 
+.text-icon-primary-button,
 .text-icon-success-button,
 .text-icon-danger-button,
 .text-icon-primary-big-button {
     margin-bottom: 16px;
 }
 
+.text-icon-primary-button:last-child,
 .text-icon-success-button:last-child,
 .text-icon-danger-button:last-child,
 .text-icon-primary-big-button:last-child {
@@ -44,8 +50,10 @@
 
 /* ANIMATION */
 .icon-primary-button:active,
+.icon-secondary-button:active,
 .icon-danger-button:active,
 .icon-success-button:active,
+.text-icon-primary-button:active,
 .text-icon-success-button:active,
 .text-icon-danger-button:active {
     transform: scale(1.1);
@@ -53,32 +61,60 @@
 
 
 /* BACKGROUND COLOR & BORDER */
-.icon-primary-button,
 .text-icon-primary-big-button {
     border: 1px solid var(--main-text-color);
 }
 
-.icon-danger-button {
-    background-color: var(--danger-color);
+.icon-primary-button {
+    border: 1px solid var(--primary-color);
+    background: linear-gradient(-45deg,
+        var(--primary-color), var(--primary-light-color) 70%, var(--primary-color));
+}
+
+.icon-secondary-button,
+.text-icon-primary-big-button {
+    border: 1px solid var(--secondary-background-color);
+    background: linear-gradient(-45deg,
+        var(--secondary-background-color), var(--secondary-light-background-color) 70%, var(--secondary-background-color));
+}
+
+.icon-danger-button,
+.text-icon-danger-button {
     border: 1px solid var(--danger-color);
+    background: linear-gradient(-45deg,
+                var(--danger-color), var(--danger-light-color) 70%, var(--danger-color));
+}
+
+.text-icon-primary-button {
+    border: 1px solid var(--primary-color);
+    background: linear-gradient(-45deg,
+            var(--primary-color), var(--primary-light-color) 70%, var(--primary-color));
 }
 
 .icon-success-button,
 .text-icon-success-button {
     background-color: var(--success-color);
     border: 1px solid var(--success-color);
-}
-
-.text-icon-danger-button {
-    border: 1px solid var(--danger-color);
+    
 }
 
 .icon-primary-button,
+.icon-secondary-button,
+.icon-success-button,
+.icon-danger-button,
+.text-icon-primary-button {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2)
+}
+
+
+.icon-primary-button,
+.icon-secondary-button,
 .icon-danger-button,
 .icon-success-button {
     border-radius: 50%;
 }
 
+.text-icon-primary-button,
 .text-icon-success-button,
 .text-icon-danger-button,
 .text-icon-primary-big-button {
@@ -88,36 +124,39 @@
 
 /* TEXT */
 .icon-primary-button span,
+.icon-secondary-button span,
 .icon-danger-button span,
 .icon-success-button span {
     display: none;
 }
 
+.text-icon-primary-button span,
 .text-icon-success-button span,
 .text-icon-danger-button span {
     flex-grow: 1;
 }
 
+.text-icon-primary-button span,
 .text-icon-success-button span,
 .text-icon-danger-button span,
 .text-icon-primary-big-button span {
     text-align: center;
 }
 
+.text-icon-primary-button span,
 .text-icon-success-button span,
 .text-icon-danger-button span,
 .text-icon-primary-big-button span {
     font-weight: bold;
 }
 
-.text-icon-success-button span {
+.text-icon-primary-button span,
+.text-icon-success-button span,
+.text-icon-danger-button span {
     color: var(--main-background-color);
 }
 
-.text-icon-danger-button span {
-    color: var(--danger-color);
-}
-
+.text-icon-primary-button span,
 .text-icon-success-button span,
 .text-icon-danger-button span {
     margin-left: -1.5rem;
@@ -126,8 +165,10 @@
 
 /* ICON */
 .icon-primary-button svg,
+.icon-secondary-button svg,
 .icon-danger-button svg,
 .icon-success-button svg,
+.text-icon-primary-button svg,
 .text-icon-success-button svg,
 .text-icon-danger-button svg  {
     height: 1.5rem;
@@ -136,18 +177,18 @@
 
 .icon-success-button svg,
 .icon-danger-button svg,
-.text-icon-success-button svg {
+.text-icon-primary-button svg,
+.text-icon-success-button svg,
+.text-icon-danger-button svg {
     fill: var(--main-background-color);
 }
 
+.icon-secondary-button svg,
 .icon-primary-button svg,
 .text-icon-primary-big-button svg {
     fill: var(--main-text-color);
 }
 
-.text-icon-danger-button svg {
-    fill: var(--danger-color);
-}
 
 .text-icon-primary-big-button svg {
     height: 3rem;
