@@ -60,7 +60,7 @@ const AddTransaction = () => {
 									key={choice.text}
 									text={choice.text}
 									icon={choice.icon}
-									className={styles['text-icon-primary-big-button']}
+									className={styles['text-icon-big-button']}
 									onClick={() => setTransactionType(choice.transactionType)}
 								/>
 							))}

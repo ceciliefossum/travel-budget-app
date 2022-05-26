@@ -2,28 +2,20 @@
   /* COLORS */
   --dark-color: #25282e;
   --medium-dark-color: #30333b;
-  --medium-lighter-dark-color: #32363d;
-  --lighter-dark-color: #696f7c;
-  --light-color: white;
-  --medium-light-color: rgb(248, 216, 193);
-  --green-color: #75c365;
+  --light-color: #F5E6E8;
+  --green-color: #5daa4d;
   --red-color: #ff6c71;
-  --light-red-color: #ff8387;
-  --blue-color: #6FAAB3;
-  --light-blue-color: #77bac4;
-  /* --light-blue-color: #e2955a; */
 
   --main-background-color: var(--dark-color);
   --secondary-background-color: var(--medium-dark-color);
+  --navbar-background-color: var(--black-color);
   --secondary-light-background-color: var(--medium-lighter-dark-color);
   --main-text-color: var(--light-color);
   --secondary-text-color: var(--medium-light-color);
   --tertiary-text-color: var(--lighter-dark-color);
-  --primary-color: var(--blue-color);
-  --primary-light-color: var(--light-blue-color);
+  --primary-color: var(--dark-green-color);
   --success-color: var(--green-color);
   --danger-color: var(--red-color);
-  --danger-light-color: var(--light-red-color);
 }
 
 body {

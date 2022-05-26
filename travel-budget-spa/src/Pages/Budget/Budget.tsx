@@ -56,7 +56,7 @@ const Budget = () => {
 							<Button
 								text="Add period"
 								icon={<CalendarPlusIcon />}
-								className={styles['text-icon-primary-big-button']}
+								className={styles['text-icon-big-button']}
 								onClick={() => setStartBudget(true)}
 							/>
 						</React.Fragment>

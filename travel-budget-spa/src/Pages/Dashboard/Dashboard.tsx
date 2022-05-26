@@ -41,7 +41,7 @@ const Dashboard = () => {
 					<div className="dashboard-details">
 						<CurrentBudget budgetPeriod={budgetPeriod} />
 						<Button
-							className={styles['text-icon-primary-button']}
+							className={styles['text-icon-button']}
 							text="See all transactions"
 							icon={<InvoiceIcon />}
 							onClick={() => null}

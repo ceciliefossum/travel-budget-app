@@ -14,10 +14,12 @@ const menuItemIcons = {
 };
 
 const menuItemButtonStyles = {
-	[appRoutePaths.home]: styles['icon-secondary-button'],
-	[appRoutePaths.addStatement]: styles['icon-primary-button'],
-	[appRoutePaths.budget]: styles['icon-secondary-button']
+	[appRoutePaths.home]: styles['icon-button'],
+	[appRoutePaths.addStatement]: styles['icon-button'],
+	[appRoutePaths.budget]: styles['icon-button']
 };
+
+export const activeButtonStyle = styles['active'];
 
 export const appMenuItems: IMenyItem[] = appRoutes
 	.filter((route: IRoute) => menuItemPaths.includes(route.path))

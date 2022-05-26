@@ -12,7 +12,7 @@ const User = ({ user, onSignOut }: UserProps) => (
 			<p>{user.displayName}</p>
 		</div>
 		<Button
-			className={styles['icon-danger-button']}
+			className={styles['icon-button']}
 			text="Sign out"
 			icon={<SignOutIcon />}
 			onClick={onSignOut}
