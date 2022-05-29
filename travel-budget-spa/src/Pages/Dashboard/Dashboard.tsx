@@ -1,5 +1,5 @@
 import './Dashboard.css';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Loading from '../../components/Loading';
 import { AuthContext } from '../../store/AuthContext';
 import useBudgetPeriod from '../../hooks/use-budget-period';
@@ -13,6 +13,7 @@ import NoBudgetPeriod from '../../components/NoBudgetPeriod';
 import Button from '../../components/Button';
 import InvoiceIcon from '../../components/Icons/InvoiceIcon';
 import styles from '../../components/Button.module.css';
+import Transactions from '../../components/Transactions';
 
 const Dashboard = () => {
 	const { user } = useContext(AuthContext);
@@ -20,9 +21,15 @@ const Dashboard = () => {
 	const { transactions } = useTransactions(budgetPeriod?.id ?? null);
 	const { balanceSummary } = useBalance(transactions, budgetPeriod);
 
+	const [showTransactions, setShowTransactions] = useState<boolean>(false);
+
 	const signOutHandler = () => {
 		auth.signOut();
 	};
+
+	const toggleShowTransactions = () => {
+		setShowTransactions((prevValue: boolean) => !prevValue);
+	}
 
 	return (
 		<div className="dashboard-container">
@@ -34,7 +41,7 @@ const Dashboard = () => {
 					<NoBudgetPeriod />
 				</React.Fragment>
 			)}
-			{!loadingMessage && !!user && !!budgetPeriod && !errorMessage && (
+			{!loadingMessage && !!user && !!budgetPeriod && !!transactions && !errorMessage && (
 				<React.Fragment>
 					<User user={user} onSignOut={signOutHandler} />
 					<BalanceSummary balanceSummary={balanceSummary} />
@@ -42,11 +49,14 @@ const Dashboard = () => {
 						<CurrentBudget budgetPeriod={budgetPeriod} />
 						<Button
 							className={styles['text-icon-button']}
-							text="See all transactions"
+							text={
+								showTransactions ? 'Hide all transactions' : 'See all transactions'
+							}
 							icon={<InvoiceIcon />}
-							onClick={() => null}
+							onClick={toggleShowTransactions}
 						/>
 					</div>
+					{showTransactions && <Transactions transactions={transactions} />}
 				</React.Fragment>
 			)}
 		</div>
