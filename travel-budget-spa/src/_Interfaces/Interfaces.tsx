@@ -44,7 +44,6 @@ export interface IBudgetPeriodDB {
 export interface IRoute {
 	path: string;
 	title: string;
-	isProtected: boolean;
 }
 
 export interface IMenyItem extends IRoute {

@@ -10,22 +10,18 @@ export const appRoutePaths = {
 export const appRoutes: IRoute[] = [
 	{
 		path: appRoutePaths.home,
-		title: 'Home',
-		isProtected: true
+		title: 'Home'
 	},
 	{
 		path: appRoutePaths.addStatement,
-		title: 'Add transaction',
-		isProtected: true
+		title: 'Add transaction'
 	},
 	{
 		path: appRoutePaths.budget,
-		title: 'Budget',
-		isProtected: true
+		title: 'Budget'
 	},
 	{
 		path: appRoutePaths.signIn,
-		title: 'Sign In',
-		isProtected: false
+		title: 'Sign In'
 	}
 ];

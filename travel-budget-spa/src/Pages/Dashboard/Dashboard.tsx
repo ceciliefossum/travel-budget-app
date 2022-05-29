@@ -29,24 +29,21 @@ const Dashboard = () => {
 
 	const toggleShowTransactions = () => {
 		setShowTransactions((prevValue: boolean) => !prevValue);
-	}
+	};
 
 	return (
 		<div className="dashboard-container">
 			{!!loadingMessage && <Loading text={loadingMessage} />}
 			{!loadingMessage && !!errorMessage && <p className="error-message">{errorMessage}</p>}
-			{!loadingMessage && !!user && !budgetPeriod && (
+			{!loadingMessage && !errorMessage && (
 				<React.Fragment>
-					<User user={user} onSignOut={signOutHandler} />
-					<NoBudgetPeriod />
-				</React.Fragment>
-			)}
-			{!loadingMessage && !!user && !!budgetPeriod && !!transactions && !errorMessage && (
-				<React.Fragment>
-					<User user={user} onSignOut={signOutHandler} />
-					<BalanceSummary balanceSummary={balanceSummary} />
-					<div className="dashboard-details">
-						<CurrentBudget budgetPeriod={budgetPeriod} />
+					{!!user && <User user={user} onSignOut={signOutHandler} />}
+					{!budgetPeriod && <NoBudgetPeriod />}
+					{!!budgetPeriod && !!transactions && (
+						<BalanceSummary balanceSummary={balanceSummary} />
+					)}
+					{!!budgetPeriod && <CurrentBudget budgetPeriod={budgetPeriod} />}
+					{!!transactions && (
 						<Button
 							className={styles['text-icon-button']}
 							text={
@@ -55,8 +52,10 @@ const Dashboard = () => {
 							icon={<InvoiceIcon />}
 							onClick={toggleShowTransactions}
 						/>
-					</div>
-					{showTransactions && <Transactions transactions={transactions} />}
+					)}
+					{!!transactions && showTransactions && (
+						<Transactions transactions={transactions} />
+					)}
 				</React.Fragment>
 			)}
 		</div>
