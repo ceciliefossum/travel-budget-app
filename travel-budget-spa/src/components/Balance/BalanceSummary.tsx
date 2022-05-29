@@ -1,9 +1,9 @@
 import React from 'react';
-import { BalanceType } from '../_interfaces/enums';
-import { BalanceSummaryProps } from '../_interfaces/props';
+import { BalanceType } from '../../_interfaces/enums';
+import { BalanceSummaryProps } from '../../_interfaces/props';
 import Balance from './Balance';
 import './BalanceSummary.css';
-import CircleProgressBar from './CircleProgressBar';
+import CircleProgressBar from './../CircleProgressBar';
 
 const BalanceSummary = ({ balanceSummary }: BalanceSummaryProps) => (
 	<div className="balances-container">

@@ -1,9 +1,16 @@
-import { IBalanceSummary, IBudgetPeriod, ITransaction, IUser } from './interfaces';
+import { TransactionType } from './enums';
+import {
+	IBalanceSummary,
+	IBudgetPeriod,
+	ITransaction,
+	ITransactionForm,
+	IUser
+} from './interfaces';
 
 export type ButtonProps = {
 	text: string,
 	icon?: JSX.Element,
-	onClick: () => void,
+	onClick: (event?: any) => void,
 	className: string
 };
 
@@ -31,4 +38,9 @@ export type UserProps = {
 export type CircleProgressBarProps = {
 	total: number,
 	current: number
+};
+
+export type TransactionFormProps = {
+	transactionType: TransactionType,
+	addTransactionHandler: (formData: ITransactionForm) => void
 };

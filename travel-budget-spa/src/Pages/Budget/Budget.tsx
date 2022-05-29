@@ -8,7 +8,7 @@ import { appRoutePaths } from '../../_constants/routes';
 import './Budget.css';
 import { AuthContext } from '../../store/AuthContext';
 import useBudgetPeriod from '../../hooks/use-budget-period';
-import CurrentBudget from '../../components/CurrentBudget';
+import CurrentBudget from '../../components/Budget/CurrentBudget';
 import styles from '../../components/Button.module.css';
 import CancelIcon from '../../components/Icons/CancelIcon';
 

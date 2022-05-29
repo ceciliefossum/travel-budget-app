@@ -7,14 +7,21 @@ export interface IBalance {
 	type: BalanceType;
 }
 
-export interface ITransaction {
-	id?: string;
+interface ITransactionBase {
 	type: TransactionType;
 	amount: number;
 	valuta: string;
+	accountId: string | null;
+	budgetPeriodId: string | null;
+}
+
+export interface ITransactionForCreate extends ITransactionBase {
+	numberOfDays: number;
+}
+
+export interface ITransaction extends ITransactionBase {
+	id?: string;
 	date: Date;
-	accountId: string;
-	budgetPeriodId: string;
 }
 
 export interface ITransactionDB {
@@ -25,6 +32,12 @@ export interface ITransactionDB {
 	date: Timestamp;
 	accountId: string;
 	budgetPeriodId: string;
+}
+
+export interface ITransactionForm {
+	amount: number;
+	valuta: string;
+	numberOfDays: number;
 }
 
 export interface IBudgetPeriod {

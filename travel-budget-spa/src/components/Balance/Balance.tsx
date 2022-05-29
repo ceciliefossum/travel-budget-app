@@ -1,4 +1,4 @@
-import { IBalance } from '../_interfaces/interfaces';
+import { IBalance } from '../../_interfaces/interfaces';
 import './Balance.css';
 
 const getBalanceClassName = (amount: number): string => {

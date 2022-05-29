@@ -1,7 +1,7 @@
-import { CurrentBudgetProps } from '../_interfaces/props';
+import { CurrentBudgetProps } from '../../_interfaces/props';
 import './CurrentBudget.css';
-import ArrowRightFromLine from './Icons/ArrowRightFromLine';
-import ArrowRightToLine from './Icons/ArrowRightToLine';
+import ArrowRightFromLine from '../Icons/ArrowRightFromLine';
+import ArrowRightToLine from '../Icons/ArrowRightToLine';
 
 const CurrentBudget = ({ budgetPeriod }: CurrentBudgetProps) => (
 	<div className="current-budget-period-container">

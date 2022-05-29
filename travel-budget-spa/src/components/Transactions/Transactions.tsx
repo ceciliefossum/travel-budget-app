@@ -1,6 +1,6 @@
 import Transaction from './Transaction';
-import { ITransaction } from '../_interfaces/interfaces';
-import { TransactionsProps } from '../_interfaces/props';
+import { ITransaction } from '../../_interfaces/interfaces';
+import { TransactionsProps } from '../../_interfaces/props';
 import './Transactions.css';
 
 const Transactions = ({ transactions }: TransactionsProps) => (

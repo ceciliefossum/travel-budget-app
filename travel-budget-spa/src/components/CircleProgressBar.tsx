@@ -1,6 +1,6 @@
 import { BalanceType } from '../_interfaces/enums';
 import { CircleProgressBarProps } from '../_interfaces/props';
-import Balance from './Balance';
+import Balance from './Balance/Balance';
 import './CircleProgressBar.css';
 
 const CircleProgressBar = ({ total, current }: CircleProgressBarProps) => {

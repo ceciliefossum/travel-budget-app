@@ -1,4 +1,4 @@
-import CalendarErrorIcon from './Icons/CalendarErrorIcon';
+import CalendarErrorIcon from '../Icons/CalendarErrorIcon';
 import './NoBudgetPeriod.css';
 
 const NoBudgetPeriod = () => (

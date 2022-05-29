@@ -5,15 +5,15 @@ import { AuthContext } from '../../store/AuthContext';
 import useBudgetPeriod from '../../hooks/use-budget-period';
 import useTransactions from '../../hooks/use-transactions';
 import useBalance from '../../hooks/use-balance';
-import BalanceSummary from '../../components/BalanceSummary';
-import CurrentBudget from '../../components/CurrentBudget';
+import BalanceSummary from '../../components/Balance/BalanceSummary';
+import CurrentBudget from '../../components/Budget/CurrentBudget';
 import User from '../../components/User';
 import { auth } from '../../helpers/firebase';
-import NoBudgetPeriod from '../../components/NoBudgetPeriod';
+import NoBudgetPeriod from '../../components/Budget/NoBudgetPeriod';
 import Button from '../../components/Button';
 import InvoiceIcon from '../../components/Icons/InvoiceIcon';
 import styles from '../../components/Button.module.css';
-import Transactions from '../../components/Transactions';
+import Transactions from '../../components/Transactions/Transactions';
 
 const Dashboard = () => {
 	const { user } = useContext(AuthContext);
