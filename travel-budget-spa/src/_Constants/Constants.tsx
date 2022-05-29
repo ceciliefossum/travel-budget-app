@@ -22,9 +22,9 @@ export const transactionTypeChoices: ITransactionTypeChoice[] = [
 		icon: <ShoppingBasketIcon />,
 		transactionType: TransactionType.DailyExpence
 	},
-	{
-		text: 'Add Fuel Expence',
-		icon: <FuelIcon />,
-		transactionType: TransactionType.Fuel
-	}
+	// {
+	// 	text: 'Add Fuel Expence',
+	// 	icon: <FuelIcon />,
+	// 	transactionType: TransactionType.Fuel
+	// }
 ];

@@ -8,12 +8,12 @@
 .no-budget-period-container svg {
 	height: 80px;
 	width: 80px;
-	fill: var(--tertiary-text-color);
+	fill: var(--secondary-text-color);
 	margin-bottom: 20px;
 }
 
 .no-budget-period-container p {
 	text-align: center;
 	font-style: italic;
-	color: var(--tertiary-text-color);
+	color: var(--secondary-text-color);
 }

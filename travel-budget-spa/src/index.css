@@ -3,16 +3,14 @@
   --dark-color: #25282e;
   --medium-dark-color: #30333b;
   --light-color: #F5E6E8;
+  --medium-light-color: #b5acac;
   --green-color: #5daa4d;
   --red-color: #ff6c71;
 
   --main-background-color: var(--dark-color);
   --secondary-background-color: var(--medium-dark-color);
-  --navbar-background-color: var(--black-color);
-  --secondary-light-background-color: var(--medium-lighter-dark-color);
   --main-text-color: var(--light-color);
   --secondary-text-color: var(--medium-light-color);
-  --tertiary-text-color: var(--lighter-dark-color);
   --primary-color: var(--dark-green-color);
   --success-color: var(--green-color);
   --danger-color: var(--red-color);
